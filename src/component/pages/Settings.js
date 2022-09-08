@@ -1,8 +1,13 @@
 import React  from "react";
 
+import Navbar from "../nav/Navbar";
+
 const Settings = () => {
     return (
-        <p>Settings!</p>
+        <div>
+            <Navbar/>
+            <p>Settings!</p>
+        </div>
     );
 };
 

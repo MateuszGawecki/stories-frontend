@@ -1,8 +1,13 @@
 import React  from "react";
 
+import Navbar from "../nav/Navbar";
+
 const People = () => {
     return (
-        <p>People!</p>
+        <div>
+            <Navbar/>
+            <p>People!</p>
+        </div>
     );
 };
 

@@ -7,7 +7,7 @@ const Navbar = () => {
             <h1>Logo Apki</h1>
             <ul>
                 <li>
-                    <Link to="/">Books</Link>
+                    <Link to="/books">Books</Link>
                 </li>
                 <li>
                     <Link to="/library">My Library</Link>

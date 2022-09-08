@@ -1,8 +1,13 @@
 import React  from "react";
 
+import Navbar from "../nav/Navbar";
+
 const Books = () => {
     return (
-        <p>Books!</p>
+        <div>
+            <Navbar/>
+            <p>Books!</p>
+        </div>
     );
 };
 
