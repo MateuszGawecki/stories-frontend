@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 async function loginUser(username, password) {
-    return fetch('http://localhost:8080/api/login', {
+    return fetch('/api/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -14,12 +14,9 @@ async function loginUser(username, password) {
             'password': password
         })
     })
-    .then(data => {
-        try {
-            console.log(data.json());
-        } catch (error) {
-            console.log('Dupa');
-        }
+    .then((response) => response.json())
+    .then((body) => {
+        return body;
     });
 };
 
@@ -29,8 +26,8 @@ function Login({ setToken }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await loginUser(username, password);
-        // setToken(token);
+        const tokens = await loginUser(username, password);
+        setToken(tokens);
     }
 
     return (
