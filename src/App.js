@@ -36,12 +36,13 @@ function App() {
       <div className="App">
       <Navbar/>
         <Routes>
+          <Route exact path='/login' element={<Login/>}/>
           <Route exact path='/library' element={<Library/>}/>
           <Route exact path='/people' element={<People/>}/>
           <Route exact path='/settings' element={<Settings/>}/>
           <Route exact path='/register' element={<Register/>}/>
           <Route exact path='/books' element={<Books/>}/>
-          <Route exact path='/' element={<Register/>}/>
+          <Route exact path='/' element={<Books/>}/>
           <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </div>
