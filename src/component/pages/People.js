@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from "react";
 
 import UsersList from "../items/UsersList";
+import Navbar from "../nav/Navbar";
 
 const People = () => {
     const [users, setUsers] = useState(null);
