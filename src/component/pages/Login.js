@@ -33,16 +33,15 @@ function Login() {
         try {
             const response = await axios.post(
                 LOGIN_URL,
-                new URLSearchParams({
-                    'username': email,
-                    'password': password
-                },
+                new URLSearchParams({'username': email, 'password': password }),
                 {
+                    withCredentials: true,
+                    credentials: "include",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
-                })
+                }
             );
 
-            const accessToken = response?.data?.accessToken;
+            const accessToken = response?.data?.access_token;
             const roles = JSON.parse(response?.data?.roles);
 
             setAuth({ email, password, roles, accessToken });

@@ -1,38 +1,37 @@
 import React, { useEffect, useState }  from "react";
-
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import UsersList from "../items/UsersList";
-import Navbar from "../nav/Navbar";
+
+const PEOPLE_URL = "/api/user/all";
 
 const People = () => {
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] = useState();
+    const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
+        console.log("Effect");
         let isMounted = true;
         const controller = new AbortController();
+        
+        const getUsers = async () => {
+            try {
+                const response = await axiosPrivate.get(PEOPLE_URL, {
+                    signal: controller.signal
+                });
 
-        fetch('/api/user/all', {
-            signal: controller.signal,
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZ2F3ZWNraTAwQGdtYWlsLmNvbSIsInJvbGVzIjpbInVzZXIiXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS9sb2dpbiIsImV4cCI6MTY2MzA3ODk3NH0.CzrTQNKdKhxLaBoGJ1i8z4uw0ldw2MDDyfIBwqFwN4E'
+                isMounted && setUsers(response.data);
+            } catch (error) {
+                console.error(error);
             }
-        })
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            isMounted && setUsers(data);
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+        };
+
+        getUsers();
 
         return () => {
             isMounted = false;
             controller.abort();
-        }
+        };
     }, []);
-
 
     return (
         <div>

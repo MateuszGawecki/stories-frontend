@@ -62,6 +62,7 @@ const Register = () => {
                 REGISTER_URL,
                 JSON.stringify({name, surname, email, password}),
                 {
+                    withCredentials: true,
                     headers: { 'Content-Type': 'application/json'}
                 }
             );

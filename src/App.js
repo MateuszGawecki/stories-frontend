@@ -9,7 +9,6 @@ import Settings from './component/pages/Settings';
 import Library from './component/pages/Library';
 import Login from './component/pages/Login';
 import Register from './component/pages/Register';
-import Navbar from "./component/nav/Navbar";
 import Layout from './component/pages/Layout';
 import Unauthorized from './component/pages/Unauthorized';
 import RequireAuth from './component/RequireAuth';
