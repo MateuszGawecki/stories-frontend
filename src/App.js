@@ -12,6 +12,7 @@ import Register from './component/pages/Register';
 import Layout from './component/pages/Layout';
 import Unauthorized from './component/pages/Unauthorized';
 import RequireAuth from './component/RequireAuth';
+import PersistLogin from './component/PersistLogin';
 
 function App() {
 
@@ -22,12 +23,17 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
-        <Route element={<RequireAuth allowedRoles={["user"]}/>}>
-          <Route path="/" element={<Books />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/people" element={<People />} />
-          <Route path="/settings" element={<Settings />} />
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={["user"]}/>}>
+            <Route path="/" element={<Books />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/people" element={<People />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
+
+          {/* sciezki pod inne role*/}
+          
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

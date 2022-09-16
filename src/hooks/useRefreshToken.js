@@ -1,21 +1,35 @@
 import axios from "../api/axios";
 import useAuth from "./useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const REFRESH_TOKEN_URL = "/api/user/token/refresh"
 
 const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
-    const refresh = async () => {
-        const response = await axios.get(REFRESH_TOKEN_URL, {
-            withCredentials: true
-        });
+    const navigate = useNavigate();
+    const location = useLocation();
 
-        setAuth(prev => {
-            return { ...prev, accessToken: response.data.access_token }
-        });
+    const refresh = async () => {
+        try {
+            const response = await axios.get(REFRESH_TOKEN_URL, {
+                withCredentials: true
+            });
     
-        return response.data.access_token;
+            setAuth(prev => {
+                return { 
+                    ...prev,
+                    roles: JSON.parse(response.data.roles),
+                    accessToken: response.data.access_token
+                 }
+            });
+        
+            return response.data.access_token;
+        } catch (error) {
+            console.error("Refresh Token Expired");
+            navigate('/login', { state: { from: location }, replace: true });
+        }
+        
     }
 
     return refresh;
