@@ -3,6 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import axios from "../../api/axios";
+import { Link } from "react-router-dom";
 
 const EMAIL_REGEX = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -195,8 +196,7 @@ const Register = () => {
                 <p>
                             Already registered?<br />
                             <span className="line">
-                                {/*put router link here*/}
-                                <a href="#">Sign In</a>
+                                <Link to="/login">Sign In</Link>
                             </span>
                         </p>
             </section>

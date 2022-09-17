@@ -2,11 +2,13 @@ import { useRef, useState, useEffect } from 'react';
 import axios from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
+import useToggle from '../../hooks/useToggle';
 
-const LOGIN_URL = '/api/login'
+const LOGIN_URL = '/api/login';
 
 function Login() {
-    const { setAuth, persist, setPersist } = useAuth();
+    const { setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,9 +17,10 @@ function Login() {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [email, setEmail] = useState('');
+    const [email, emailReset, emailAttributeObj] = useInput('email','');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
+    const [check, toggleCheck] = useToggle('persist', false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -46,7 +49,7 @@ function Login() {
 
             setAuth({ email, password, roles, accessToken });
 
-            setEmail('');
+            emailReset();
             setPassword('');
             navigate(from, {replace: true});
         } catch (error) {
@@ -59,14 +62,6 @@ function Login() {
         }
     };
 
-    const togglePersist = () => {
-        setPersist(prev => !prev);
-    };
-
-    useEffect(() => {
-        localStorage.setItem("persist", persist);
-    }, [persist]);
-
     return (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
@@ -78,8 +73,7 @@ function Login() {
                     id="email"
                     ref={userRef}
                     autoComplete="off"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
+                    {...emailAttributeObj}
                     required
                 />
 
@@ -97,8 +91,8 @@ function Login() {
                     <input 
                         type="checkbox"
                         id='persist'
-                        onChange={togglePersist}
-                        checked={persist}
+                        onChange={toggleCheck}
+                        checked={check}
                     />
                     <label htmlFor='persist'>Trust This Device</label>
                 </div>
@@ -107,8 +101,7 @@ function Login() {
             <p>
                 Need an Account?<br />
                 <span className="line">
-                    {/*put router link here*/}
-                    <a href="#">Sign Up</a>
+                    <Link to="/register">Sign Up</Link> 
                 </span>
             </p>
         </section>
