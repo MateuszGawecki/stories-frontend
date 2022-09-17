@@ -45,9 +45,8 @@ function Login() {
             );
 
             const accessToken = response?.data?.access_token;
-            const roles = JSON.parse(response?.data?.roles);
 
-            setAuth({ email, password, roles, accessToken });
+            setAuth({ email, accessToken });
 
             emailReset();
             setPassword('');
