@@ -131,7 +131,7 @@ const Register = () => {
                         onChange={(e) => setEmail(e.target.value)} 
                         requied 
                         aria-invalid={validEmail ? "false" : "true"} 
-                        aria-describedy="uidnote" 
+                        aria-describedby="uidnote" 
                         onFocus={() => setEmailFocus(true)} 
                         onBlur={() => setEmailFocus(false)} 
                     />

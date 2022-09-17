@@ -9,7 +9,6 @@ const People = () => {
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
-        console.log("Effect");
         let isMounted = true;
         const controller = new AbortController();
         
