@@ -45,11 +45,15 @@ const AddBook = () => {
         }
     }
 
-    const saveBook = async (imagePath) => {
+    const saveBook = async (image_path) => {
+        var authors = new Array();
+        const author = {authorName,authorSurname};
+        authors.push(author);
+
         try {
             const response = await axiosPrivate.post(
                 CREATE_BOOK_URL,
-                JSON.stringify({title, description, authorName, authorSurname, imagePath}),
+                JSON.stringify({title, description, authors, image_path}),
                 {
                     withCredentials: true,
                     headers: { 'Content-Type': 'application/json'}
@@ -72,8 +76,7 @@ const AddBook = () => {
         e.preventDefault();
 
         const imagePath = await saveImage();
-        console.log(imagePath);
-        //saveBook(imagePath);
+        saveBook(imagePath);
     };
 
     return (
