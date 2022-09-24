@@ -28,11 +28,12 @@ const AddBook = () => {
                 SAVE_IMAGE_PATH,
                 formData,
                 {
-                    withCredentials: true
+                    withCredentials: true,
+                    headers: { 'Content-Type': 'multipart/form-data', 'Accept': 'application/json'}
                 }
             );
 
-            return response?.data.imageName;
+            return response?.data;
 
         } catch (error) {
             if (!error?.response) {
