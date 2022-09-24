@@ -13,6 +13,7 @@ import Layout from './component/pages/Layout';
 import Unauthorized from './component/pages/Unauthorized';
 import RequireAuth from './component/RequireAuth';
 import PersistLogin from './component/PersistLogin';
+import AddBook from './component/pages/AddBook';
 
 function App() {
 
@@ -33,6 +34,9 @@ function App() {
           </Route>
 
           {/* sciezki pod inne role*/}
+          <Route element={<RequireAuth allowedRoles={["moderator"]}/>}>
+            <Route path="/book/add" element={<AddBook />} />
+          </Route>
           
         </Route>
 

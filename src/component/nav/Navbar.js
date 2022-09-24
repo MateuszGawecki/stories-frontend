@@ -27,6 +27,9 @@ const Navbar = () => {
                 <li>
                     <Link to="/settings">Settings</Link>
                 </li>
+                <li>
+                    <Link to="/book/add">Add Book</Link>
+                </li>
             </ul>
 
             <button onClick={singOut}>Log out</button>
