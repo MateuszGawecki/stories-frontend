@@ -1,9 +1,11 @@
+import "./Login.css";
+
 import { useRef, useState, useEffect } from 'react';
-import axios from '../../api/axios';
-import useAuth from '../../hooks/useAuth';
+import axios from '../../../api/axios';
+import useAuth from '../../../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import useInput from '../../hooks/useInput';
-import useToggle from '../../hooks/useToggle';
+import useInput from '../../../hooks/useInput';
+import useToggle from '../../../hooks/useToggle';
 
 const LOGIN_URL = '/api/login';
 
@@ -62,7 +64,12 @@ function Login() {
     };
 
     return (
-        <section>
+        <div className="logindiv">
+        <svg className="imglogin" xmlns="http://www.w3.org/2000/svg" width="537" height="108" viewBox="0 0 537 108">
+            <text id="Stories" transform="translate(0 85)" fill="#fff" font-size="88" font-family="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
+        </svg>
+
+        <section className="loginsection">
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
@@ -85,15 +92,17 @@ function Login() {
                     required
                 />
 
-                <button>Sign In</button>
-                <div className='persistCheck'>
-                    <input 
-                        type="checkbox"
-                        id='persist'
-                        onChange={toggleCheck}
-                        checked={check}
-                    />
-                    <label htmlFor='persist'>Trust This Device</label>
+                <div className="signindiv">
+                    <button>Sign In</button>
+                    <div className='persistCheck'>
+                        <input 
+                            type="checkbox"
+                            id='persist'
+                            onChange={toggleCheck}
+                            checked={check}
+                        />
+                        <label htmlFor='persist'>Trust This Device</label>
+                    </div>
                 </div>
             </form>
 
@@ -104,6 +113,7 @@ function Login() {
                 </span>
             </p>
         </section>
+        </div>
     );
 };
 

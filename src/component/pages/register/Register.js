@@ -1,14 +1,16 @@
+import "./Register.css";
+
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import axios from "../../api/axios";
+import axios from "../../../api/axios";
 import { Link } from "react-router-dom";
 
 const EMAIL_REGEX = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-const REGISTER_URL = '/api/user/register';
+const REGISTER_URL = '/api/security/register';
 
 const Register = () => {
     const emailRef = useRef();
@@ -57,11 +59,12 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const userDTO = {name, surname, email};
 
         try {
             const response = await axios.post(
                 REGISTER_URL,
-                JSON.stringify({name, surname, email, password}),
+                JSON.stringify({userDTO, password}),
                 {
                     withCredentials: true,
                     headers: { 'Content-Type': 'application/json'}
@@ -81,16 +84,20 @@ const Register = () => {
     };
 
     return (
-        <>
+        <div className="registerdiv">
+        <svg className="imgregister" xmlns="http://www.w3.org/2000/svg" width="537" height="108" viewBox="0 0 537 108">
+            <text id="Stories" transform="translate(0 85)" fill="#fff" font-size="88" font-family="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
+        </svg>
+
         { success ? (
-            <section>
+            <section className="registersection">
                 <h1>Success!</h1>
                 <p>
                     <Link to="/login">Sign In</Link>
                 </p>
             </section>
         ) : (
-            <section>
+            <section className="registersection">
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
@@ -201,7 +208,7 @@ const Register = () => {
                         </p>
             </section>
         )} 
-        </>
+        </div>
     );
 };
 

@@ -1,3 +1,5 @@
+import "./Navbar.css";
+
 import React  from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
@@ -13,7 +15,9 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <h1>Logo Apki</h1>
+            <svg className="imgNavbar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 537 108">
+                <text id="Stories" transform="translate(0 85)" fill="#fff" font-size="88" font-family="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
+            </svg>
             <ul>
                 <li>
                     <Link to="/books">Books</Link>
@@ -26,9 +30,6 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link to="/settings">Settings</Link>
-                </li>
-                <li>
-                    <Link to="/book/add">Add Book</Link>
                 </li>
             </ul>
 

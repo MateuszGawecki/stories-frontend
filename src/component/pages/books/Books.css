@@ -1,0 +1,19 @@
+.booksMain {
+    background-color: white;
+    height: 77%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.booksAside {
+    width: 15%;
+
+    border-right: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.booksList {
+    padding: 0.6em;
+}

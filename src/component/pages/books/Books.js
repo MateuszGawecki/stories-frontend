@@ -1,8 +1,10 @@
-import React, { useEffect, useState }  from "react";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import BooksList from "../items/BooksList";
+import "./Books.css";
 
-const BOOK_URL = "/api/book";
+import React, { useEffect, useState }  from "react";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import BooksList from "../../items/BooksList";
+
+const BOOK_URL = "/api/books";
 
 const Books = () => {
     const [books, setBooks] = useState();
@@ -33,9 +35,13 @@ const Books = () => {
     }, []);
 
     return (
-        <div>
-            <p>Books</p>
-            {books && <BooksList books={books} />}
+        <div className="booksMain">
+            <div className="booksAside">
+                <p> Search bar </p>
+            </div>
+            <div className="booksList">
+                {books && <BooksList books={books} />}
+            </div>
         </div>
     );
 };

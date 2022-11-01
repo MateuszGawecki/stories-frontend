@@ -11,7 +11,7 @@ const Book = ({ book }) => {
         
         const getImage = async () => {
             try {
-                const response = await axiosPrivate.get("/api/image/" + book.image_path, {
+                const response = await axiosPrivate.get("/api/image/" + book.imagePath, {
                     responseType: "blob",
                     signal: controller.signal
                 });
@@ -37,8 +37,7 @@ const Book = ({ book }) => {
     return (
         <div className="book" id={book.user_id}>
             <p>{book.title}</p>
-            <p>{book.image_path}</p>
-            {img && <img src={img} alt=" " />}
+            {/* {img && <img src={img} alt=" " />} */}
         </div>
     )
 };

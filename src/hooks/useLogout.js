@@ -1,7 +1,7 @@
 import useAxiosPrivate from "./useAxiosPrivate";
 import useAuth from "./useAuth";
 
-const LOGOUT_URL = '/api/user/logout';
+const LOGOUT_URL = '/api/security/logout';
 
 const useLogout = () => {
     const { setAuth } = useAuth();

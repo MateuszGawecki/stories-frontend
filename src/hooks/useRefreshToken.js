@@ -2,7 +2,7 @@ import axios from "../api/axios";
 import useAuth from "./useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const REFRESH_TOKEN_URL = "/api/user/token/refresh"
+const REFRESH_TOKEN_URL = "/api/security/token/refresh"
 
 const useRefreshToken = () => {
     const { setAuth } = useAuth();
