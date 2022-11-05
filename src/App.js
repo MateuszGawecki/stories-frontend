@@ -6,7 +6,7 @@ import Books from './component/pages/books/Books';
 import PageNotFound from './component/pages/PageNotFound';
 import People from './component/pages/People';
 import Settings from './component/pages/Settings';
-import Library from './component/pages/Library';
+import Library from './component/pages/library/Library';
 import Login from './component/pages/login/Login';
 import Register from './component/pages/register/Register';
 import Layout from './component/pages/Layout';

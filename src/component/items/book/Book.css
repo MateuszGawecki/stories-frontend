@@ -1,0 +1,61 @@
+.book {
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+    margin: 0.1em;
+
+    width: 25.5vw;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.bookInfo {
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.bookInfo>h4{
+    height: 10%;
+    margin: 0.5em 0.2em;
+    overflow: auto;
+}
+
+.bookAuthors {
+    margin: 0.2em;
+    height: 10%;
+    overflow: auto;
+}
+
+.bookAuthors>p {
+    margin: 0.2em;
+}
+
+.bookDesc {
+    margin: 0.2em;
+    padding-top: 0.5em;
+    height: 50%;
+
+    overflow: auto;
+}
+
+.bookSocialAction{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.book>img {
+    width: 50%;
+    border-radius: 1em 0 0 1em;
+}

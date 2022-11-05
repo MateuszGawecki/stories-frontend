@@ -1,7 +1,9 @@
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import "./BookWithNotes.css";
+
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useState, useEffect } from "react";
 
-const Book = ({ book }) => {
+const BookWithNotes = ({ userBook }) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
@@ -11,7 +13,7 @@ const Book = ({ book }) => {
         
         const getImage = async () => {
             try {
-                const response = await axiosPrivate.get("/api/image/" + book.imagePath, {
+                const response = await axiosPrivate.get("/api/image/" + userBook.bookDTO.imagePath, {
                     responseType: "blob",
                     signal: controller.signal
                 });
@@ -35,11 +37,24 @@ const Book = ({ book }) => {
     }, []);
 
     return (
-        <div className="book" id={book.user_id}>
-            <p>{book.title}</p>
-            {/* {img && <img src={img} alt=" " />} */}
+        <div className="userBook" id={userBook.userBookId}>
+            {img && <img src={img} alt=" " />}
+            <div className="userBookInfo">
+                <h5>{userBook.bookDTO.title}</h5>
+            </div>
+            <div className="notesSection">
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+                <p>Dupa</p>
+            </div>
         </div>
     )
 };
 
-export default Book;
+export default BookWithNotes;
