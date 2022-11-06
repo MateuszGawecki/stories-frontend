@@ -1,18 +1,13 @@
 import { useState }  from "react";
 
-const SearchBar = ({ books, setSearchResults }) => {
+const SearchBar = ({ setSearch }) => {
 
-    const [searchingAtr, setSearchingAtr] = useState("Title");
+    const [searchingAtr, setSearchingAtr] = useState("title");
 
     const handleSubmit = (e) => e.preventDefault();
 
     const handleSearchChange = (e) => {
-        if(!e.target.value) return setSearchResults(books);
-
-        //kategorie search
-        const resultArray = books.filter(book => book.title.includes(e.target.value));
-
-        setSearchResults(resultArray);
+        setSearch(searchingAtr, e.target.value);
     };
 
     const onChangeSelect = (e) => {
