@@ -1,11 +1,12 @@
 import "./BookWithNotes.css";
 
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const BookWithNotes = ({ userBook }) => {
+const BookWithNotes = ({ userBook, addComment }) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
+    const newNote = useRef();
 
     useEffect(() => {
         let isMounted = true;
@@ -36,22 +37,42 @@ const BookWithNotes = ({ userBook }) => {
         };
     }, []);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if(newNote.current.value !== "")
+            addComment(userBook.userBookId, newNote.current.value);
+
+        e.target.reset();
+    };
+
     return (
         <div className="userBook" id={userBook.userBookId}>
             {img && <img src={img} alt=" " />}
             <div className="userBookInfo">
                 <h5>{userBook.bookDTO.title}</h5>
+                <div className="userBookAuthors">
+                    {userBook.bookDTO.authors?.map(author => {
+                        return <p>{author.authorName + " " + author.authorSurname}</p>
+                    })}
+                </div>
             </div>
             <div className="notesSection">
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
-                <p>Dupa</p>
+                    {userBook.commentDTOs?.map(note => {
+                        return <p>{note.comment}</p>
+                    })}
+
+                    <div className="addNoteDiv">
+                        <form onSubmit={handleSubmit}>
+                            <input 
+                                type="text" 
+                                id="note" 
+                                ref={newNote}
+                                requied
+                            />
+                            <button>Add note</button>
+                        </form>
+                    </div>
             </div>
         </div>
     )

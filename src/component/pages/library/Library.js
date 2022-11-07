@@ -1,6 +1,6 @@
 import "./Library.css";
 
-import React, { useEffect, useState }  from "react";
+import React, { useCallback, useEffect, useState }  from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import BooksWithNotesList from "../../items/book/BooksWithNotesList";
 import BooksList from "../../items/book/BooksList";
@@ -9,7 +9,6 @@ const BOOK_URL = "/api/users/books";
 const RECOM_URL = "/api/users/books/recommended";
 
 const Library = () => {
-
     const [userBooks, setUserBooks] = useState();
     const [recom, setRecom] = useState();
     const axiosPrivate = useAxiosPrivate();
@@ -51,13 +50,24 @@ const Library = () => {
         };
     }, []);
 
+    const addComment = useCallback( async (userBookId, comment) => {
+        try {
+            const response = await axiosPrivate.post(BOOK_URL + "/" + userBookId + "/comments", comment,
+            {headers: {"Content-Type": "text/plain"}});
+        } catch (error) {
+            console.error(error);
+        }
+
+        
+    }, []);
+
     return (
         <div className="libraryMain">
             <div className="libraryAside">
                 <p>Recommended:</p>
                 {recom &&  <BooksList books={recom} name="recommendedList"/>}
             </div>
-            {userBooks && <BooksWithNotesList userBooks={userBooks} />}
+            {userBooks && <BooksWithNotesList userBooks={userBooks} addComment={addComment}/>}
         </div>
     );
 };
