@@ -1,12 +1,12 @@
 import BookWithNotes from "./BookWithNotes";
 
-const BooksWithNotesList = ({ userBooks, addComment }) => {
+const BooksWithNotesList = ({ userBooks }) => {
 
     return (
         <ul className="libraryList" >
             {userBooks.map(userBook => (
                 <li key={userBook.userBookId}>
-                    <BookWithNotes userBook={userBook} addComment={addComment}/>
+                    <BookWithNotes userBook={userBook}/>
                 </li>
             ))}
         </ul>

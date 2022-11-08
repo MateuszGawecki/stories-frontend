@@ -50,24 +50,13 @@ const Library = () => {
         };
     }, []);
 
-    const addComment = useCallback( async (userBookId, comment) => {
-        try {
-            const response = await axiosPrivate.post(BOOK_URL + "/" + userBookId + "/comments", comment,
-            {headers: {"Content-Type": "text/plain"}});
-        } catch (error) {
-            console.error(error);
-        }
-
-        
-    }, []);
-
     return (
         <div className="libraryMain">
             <div className="libraryAside">
                 <p>Recommended:</p>
                 {recom &&  <BooksList books={recom} name="recommendedList"/>}
             </div>
-            {userBooks && <BooksWithNotesList userBooks={userBooks} addComment={addComment}/>}
+            {userBooks && <BooksWithNotesList userBooks={userBooks}/>}
         </div>
     );
 };
