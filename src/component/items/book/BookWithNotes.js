@@ -65,7 +65,7 @@ const BookWithNotes = ({ userBook}) => {
          e.target.reset();
     };
 
-    const handleTrashIcon = useCallback(async (noteId) => {
+    const handleDelete = useCallback(async (noteId) => {
         try {
             const response = await axiosPrivate.delete(BOOK_URL + "/" + userBook.userBookId + "/comments/" + noteId);
 
@@ -79,7 +79,7 @@ const BookWithNotes = ({ userBook}) => {
         }
     }, []);
 
-    const handleEditIcon = useCallback(async (commentId, comment) => {
+    const handleEdit = useCallback(async (commentId, comment) => {
         try {
             const response = await axiosPrivate.put(BOOK_URL + "/" + userBook.userBookId + "/comments" , JSON.stringify({commentId, comment}),
             {headers: {"Content-Type": "application/json"}});
@@ -126,7 +126,7 @@ const BookWithNotes = ({ userBook}) => {
                 <ul className="notes" >
                     {userBook1.commentDTOs?.map(note => (
                         <li key={note.commentId}>
-                            <Note note ={note} handleEditIcon={handleEditIcon} handleTrashIcon={handleTrashIcon}/>
+                            <Note note ={note} handleEdit={handleEdit} handleDelete={handleDelete}/>
                         </li>
                     ))}
                 </ul>
