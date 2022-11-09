@@ -1,0 +1,33 @@
+.note{
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+    margin-left: 0.5em;
+    width: 31vw;
+    margin-top: 0.2em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.note>input{
+    width: 80%;
+    height: 100%;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.actionIcons{
+    display: flex;
+    flex-direction: row;
+}
+
+.delIcon, .editIcon{
+    margin-right: 0.5em;
+}
+
+.addNoteDiv{
+    height: 10%;
+}

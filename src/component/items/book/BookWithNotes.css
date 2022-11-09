@@ -43,38 +43,6 @@
     align-items: flex-start;
 }
 
-.note{
-    border: solid;
-    border-color: black;
-    border-width: 1px;
-    border-radius: 1em;
-    margin-left: 0.5em;
-    width: 31vw;
-    margin-top: 0.2em;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.note>p{
-    margin: 0.2em;
-    overflow: auto;
-}
-
-.actionIcons{
-    display: flex;
-    flex-direction: row;
-}
-
-.delIcon, .editIcon{
-    margin-right: 0.5em;
-}
-
-.addNoteDiv{
-    height: 10%;
-}
-
 
 
 .on {

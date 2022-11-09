@@ -1,11 +1,10 @@
 import "./BookWithNotes.css";
 
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useState, useEffect, useRef } from "react";
-import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import Rating from "../Rating/Rating";
+import Note from "../note/Note";
 
 const BOOK_URL = "/api/users/books";
 
@@ -66,7 +65,7 @@ const BookWithNotes = ({ userBook}) => {
          e.target.reset();
     };
 
-    const handleTrashIcon = async (noteId) => {
+    const handleTrashIcon = useCallback(async (noteId) => {
         try {
             const response = await axiosPrivate.delete(BOOK_URL + "/" + userBook.userBookId + "/comments/" + noteId);
 
@@ -78,14 +77,23 @@ const BookWithNotes = ({ userBook}) => {
         } catch (error) {
             console.error(error);
         }
-    };
+    }, []);
 
-    const handleEditIcon = async (noteId, newComment) => {
-        // edit comment with noteId
-        //show input for newComment with placeholder as oldComment
+    const handleEditIcon = useCallback(async (commentId, comment) => {
+        try {
+            const response = await axiosPrivate.put(BOOK_URL + "/" + userBook.userBookId + "/comments" , JSON.stringify({commentId, comment}),
+            {headers: {"Content-Type": "application/json"}});
 
-        //editComment(userBook.userBookId, noteId, newComment);
-    };
+            const newBook = JSON.parse(JSON.stringify(userBook1));
+            const newComments = newBook.commentDTOs.filter(comment => comment.commentId !== commentId);
+            newComments.push(response.data);
+            newBook.commentDTOs = newComments;
+            setUserBook1(newBook);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
 
     const setNewRating = async (newRating) => {
         try {
@@ -118,13 +126,7 @@ const BookWithNotes = ({ userBook}) => {
                 <ul className="notes" >
                     {userBook1.commentDTOs?.map(note => (
                         <li key={note.commentId}>
-                            <div className="note">
-                                <p>{note.comment}</p>
-                                <div className="actionIcons">
-                                    <FontAwesomeIcon className="editIcon" icon={faPenToSquare} onClick ={() => handleEditIcon(note.commentId)}/>
-                                    <FontAwesomeIcon className="delIcon" icon={faTrashCan} onClick ={() => handleTrashIcon(note.commentId)}/>
-                                </div>
-                            </div>
+                            <Note note ={note} handleEditIcon={handleEditIcon} handleTrashIcon={handleTrashIcon}/>
                         </li>
                     ))}
                 </ul>

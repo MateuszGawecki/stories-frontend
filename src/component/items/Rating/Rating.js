@@ -5,10 +5,6 @@ const Rating = ({initRating, setNewRating}) => {
     const [rating, setRating] = useState(initRating);
     const [hover, setHover] = useState(0);
 
-    useEffect(() => {
-        console.log(rating);
-    }, [rating]);
-
     const handleSetRating = (ind) => {
         setRating(ind);
         setNewRating(ind);
