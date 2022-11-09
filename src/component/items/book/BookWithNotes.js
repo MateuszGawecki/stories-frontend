@@ -113,6 +113,7 @@ const BookWithNotes = ({ userBook}) => {
             {img && <img src={img} alt=" " />}
             <div className="userBookInfo">
                 <h5>{userBook1.bookDTO.title}</h5>
+                <p className="userBookDesc">{userBook1.bookDTO.description}</p>
                 <div className="userBookAuthors">
                     {userBook1.bookDTO.authors?.map(author => {
                         return <p>{author.authorName + " " + author.authorSurname}</p>

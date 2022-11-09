@@ -1,6 +1,6 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 
 const RequireAuth = ({ allowedRoles }) => {
     const { auth } = useAuth();
@@ -11,8 +11,6 @@ const RequireAuth = ({ allowedRoles }) => {
         : undefined;
 
     const roles = decoded?.roles || [];
-
-    console.log(roles);
 
     return (
         roles.find(role => allowedRoles?.includes(role)) 

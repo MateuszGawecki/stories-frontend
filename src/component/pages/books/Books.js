@@ -27,7 +27,6 @@ const Books = () => {
     }, []);
 
     useEffect(() => {
-        console.log("Effect na search");
         let isMounted = true;
         const controller = new AbortController();
 
@@ -64,7 +63,6 @@ const Books = () => {
     }, [searchValue]);
 
     useEffect(() => {
-        console.log("Effect na currentPage");
         let isMounted = true;
         const controller = new AbortController();
 

@@ -2,23 +2,40 @@ import "./Book.css";
 
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
+import useAuth from "../../../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 
 const Book = ({ book }) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
+    //=================================================
+    const { auth } = useAuth();
+    
+    const decoded = auth?.accessToken
+        ? jwt_decode(auth.accessToken)
+        : undefined;
+    const roles = decoded?.roles || [];
+
+    //=================================================
+    const navigate = useNavigate();
+    //=================================================
+
     const handlePlusIcon = async (objId) => {
-        console.log("Book id is " + objId);
-
-        // add to library
-
         try {
             const response = await axiosPrivate.post("/api/users/books/" + book.bookId);
         } catch (error) {
             console.error(error);
         }
+    };
+
+    const handleChangeIcon = async (objId) => {
+        // navigate to edit book page
+        navigate("/books/" + objId);
     };
 
     useEffect(() => {
@@ -53,6 +70,10 @@ const Book = ({ book }) => {
     return (
         <div className="book" id={book.bookId}>
             <div className="bookInfo">
+                {roles.find(role => role === 'moderator') 
+                    ? <FontAwesomeIcon icon={faPenToSquare} onClick ={() => handleChangeIcon(book.bookId)} /> 
+                    : null 
+                }
                 <h4>{book.title}</h4>
                 <div className="bookAuthors">
                     {book.authors?.map(author => {

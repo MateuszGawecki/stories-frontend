@@ -16,7 +16,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <svg className="imgNavbar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 537 108">
-                <text id="Stories" transform="translate(0 85)" fill="#fff" font-size="88" font-family="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
+                <text id="Stories" transform="translate(0 85)" fill="#fff" fontSize="88" fontFamily="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
             </svg>
             <ul>
                 <li>

@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Books from './component/pages/books/Books';
 import PageNotFound from './component/pages/PageNotFound';
 import People from './component/pages/People';
-import Settings from './component/pages/Settings';
+import Settings from './component/pages/settings/Settings';
 import Library from './component/pages/library/Library';
 import Login from './component/pages/login/Login';
 import Register from './component/pages/register/Register';

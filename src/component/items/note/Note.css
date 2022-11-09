@@ -28,6 +28,10 @@
     margin-right: 0.5em;
 }
 
+.delIcon{
+    color: darkred;
+}
+
 .addNoteDiv{
     height: 10%;
 }
