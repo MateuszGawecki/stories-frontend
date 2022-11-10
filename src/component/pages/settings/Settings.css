@@ -1,8 +1,62 @@
 .settingsMain{
     background-color: white;
     height: 82%;
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.imageDiv {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageDiv>img{
+    width: 10em;
+    height: 15em;
 }
 
 .userDetails {
+    width: 50%;
+    height: 100%;
     background-color: gray;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.hide {
+    display: none;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.userDetails>input{
+    width: 50%;
 }
