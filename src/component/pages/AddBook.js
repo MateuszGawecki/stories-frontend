@@ -1,12 +1,13 @@
 import { useState, useRef } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const CREATE_BOOK_URL = "/api/book";
+const CREATE_BOOK_URL = "/api/books";
 const SAVE_IMAGE_PATH = "/api/image";
 
 const AddBook = () => {
     const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
 
     const errRef = useRef();
     const [success, setSuccess] = useState(false);
@@ -24,7 +25,7 @@ const AddBook = () => {
         formData.append("image", image);
 
         try {
-            const response = await axiosPrivate.post(
+            const response2 = await axiosPrivate.post(
                 SAVE_IMAGE_PATH,
                 formData,
                 {
@@ -33,7 +34,7 @@ const AddBook = () => {
                 }
             );
 
-            return response?.data;
+            return response2?.data;
 
         } catch (error) {
             if (!error?.response) {
@@ -50,10 +51,17 @@ const AddBook = () => {
         const author = {authorName,authorSurname};
         authors.push(author);
 
+        var genres = new Array();
+        // const genre = {genreName};
+        // genres.push(genre);
+
+        const globalScore = 0;
+        const votes = 0;
+
         try {
             const response = await axiosPrivate.post(
                 CREATE_BOOK_URL,
-                JSON.stringify({title, description, authors, image_path}),
+                JSON.stringify({title, description, authors, genres, globalScore, votes, image_path}),
                 {
                     withCredentials: true,
                     headers: { 'Content-Type': 'application/json'}
@@ -81,12 +89,12 @@ const AddBook = () => {
 
     return (
         <>
+        <button onClick={() => navigate(-1)}>Go back</button>
         { success ? (
             <section>
                 <h1>Success!</h1>
                 <p>
-                    <Link to="/login">Sign In</Link>
-                    <button onClick={setSuccess(false)}>Add another one!</button>
+                    <button onClick={() => setSuccess(false)}>Add another one!</button>
                 </p>
             </section>
         ) : (

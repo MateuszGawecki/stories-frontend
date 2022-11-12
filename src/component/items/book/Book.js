@@ -4,12 +4,12 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import useAuth from "../../../hooks/useAuth";
 import jwt_decode from "jwt-decode";
 
-const Book = ({ book }) => {
+const Book = ({ book, handleDelete }) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
@@ -25,7 +25,7 @@ const Book = ({ book }) => {
     const navigate = useNavigate();
     //=================================================
 
-    const handlePlusIcon = async (objId) => {
+    const handlePlusIcon = async () => {
         try {
             const response = await axiosPrivate.post("/api/users/books/" + book.bookId);
         } catch (error) {
@@ -33,9 +33,9 @@ const Book = ({ book }) => {
         }
     };
 
-    const handleChangeIcon = async (objId) => {
+    const handleChangeIcon = async () => {
         // navigate to edit book page
-        navigate("/books/" + objId);
+        navigate("/books/" + book.bookId);
     };
 
     useEffect(() => {
@@ -71,7 +71,10 @@ const Book = ({ book }) => {
         <div className="book" id={book.bookId}>
             <div className="bookInfo">
                 {roles.find(role => role === 'moderator') 
-                    ? <FontAwesomeIcon icon={faPenToSquare} onClick ={() => handleChangeIcon(book.bookId)} /> 
+                    ? <div className="modAction">
+                        <FontAwesomeIcon icon={faPenToSquare} onClick ={() => handleChangeIcon()} />
+                        <FontAwesomeIcon icon={faTimes} onClick ={() => handleDelete(book.bookId)} />
+                      </div> 
                     : null 
                 }
                 <h4>{book.title}</h4>
@@ -83,7 +86,7 @@ const Book = ({ book }) => {
                 <p className="bookDesc">{book.description}</p>
                 <div className="bookSocialAction">
                     <p>Grade: {book.globalScore} ({book.votes})</p>
-                    <FontAwesomeIcon icon={faPlus} onClick ={() => handlePlusIcon(book.bookId)} />
+                    <FontAwesomeIcon icon={faPlus} onClick ={() => handlePlusIcon()} />
                 </div>
             </div>
             {img && <img src={img} alt=" " />}

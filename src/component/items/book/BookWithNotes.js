@@ -10,9 +10,14 @@ const BOOK_URL = "/api/users/books";
 
 const BookWithNotes = ({ userBook}) => {
     const [userBook1, setUserBook1] = useState(userBook);
+    const [comments, setComments] = useState(userBook.commentDTOs);
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
     const newNote = useRef();
+
+    useEffect(() => {
+        console.log("Ub");
+    }, [userBook1]);
 
     useEffect(() => {
         let isMounted = true;
@@ -30,7 +35,6 @@ const BookWithNotes = ({ userBook}) => {
                 });
     
                 isMounted && setImg(URL.createObjectURL(imageBlob));
-                // isMounted && setUserBook1(userBook);
             } catch (error) {
                 console.error(error);
             }
@@ -50,13 +54,30 @@ const BookWithNotes = ({ userBook}) => {
         if(newNote.current.value === "")
             return;
 
+        console.log(userBook1.commentDTOs);
+        
         try {
             const response = await axiosPrivate.post(BOOK_URL + "/" + userBook.userBookId + "/comments", newNote.current.value,
             {headers: {"Content-Type": "text/plain"}});
 
-            const newBook = JSON.parse(JSON.stringify(userBook1));
-            newBook.commentDTOs.push(response.data);
-            setUserBook1(newBook);
+            console.log(userBook1.commentDTOs);
+
+            // setUserBook1(prevState => {
+            //     const newUb = prevState;
+            //     newUb.commentDTOs.push(response.data);
+
+            //     return newUb;
+            // });
+
+            // setComments(prevState => {
+            //     console.log(response.data);
+            //     const newComments = prevState;
+            //     console.log(prevState);
+            //     console.log(newComments);
+            //     newComments.push(response.data);
+            //     console.log(newComments);
+            //     return newComments;
+            // });
 
         } catch (error) {
             console.error(error);
@@ -64,36 +85,6 @@ const BookWithNotes = ({ userBook}) => {
 
          e.target.reset();
     };
-
-    const handleDelete = useCallback(async (noteId) => {
-        try {
-            const response = await axiosPrivate.delete(BOOK_URL + "/" + userBook.userBookId + "/comments/" + noteId);
-
-            const newBook = JSON.parse(JSON.stringify(userBook1));
-            const newComments = newBook.commentDTOs.filter(comment => comment.commentId !== noteId);
-            newBook.commentDTOs = newComments;
-            setUserBook1(newBook);
-
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
-
-    const handleEdit = useCallback(async (commentId, comment) => {
-        try {
-            const response = await axiosPrivate.put(BOOK_URL + "/" + userBook.userBookId + "/comments" , JSON.stringify({commentId, comment}),
-            {headers: {"Content-Type": "application/json"}});
-
-            const newBook = JSON.parse(JSON.stringify(userBook1));
-            const newComments = newBook.commentDTOs.filter(comment => comment.commentId !== commentId);
-            newComments.push(response.data);
-            newBook.commentDTOs = newComments;
-            setUserBook1(newBook);
-
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
 
     const setNewRating = async (newRating) => {
         try {
@@ -125,9 +116,9 @@ const BookWithNotes = ({ userBook}) => {
             </div>
             <div className="notesSection">
                 <ul className="notes" >
-                    {userBook1.commentDTOs?.map(note => (
+                    {comments?.map(note => (
                         <li key={note.commentId}>
-                            <Note note ={note} handleEdit={handleEdit} handleDelete={handleDelete}/>
+                            <Note note ={note} ubId={userBook1.userBookId} setComments={setComments}/>
                         </li>
                     ))}
                 </ul>

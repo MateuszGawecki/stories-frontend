@@ -35,7 +35,8 @@ function App() {
 
           {/* sciezki pod inne role*/}
           <Route element={<RequireAuth allowedRoles={["moderator"]}/>}>
-            <Route path="/book/add" element={<AddBook />} />
+            <Route path="/books/add" element={<AddBook />} />
+            <Route path="/books/:id" element={<AddBook />} />
           </Route>
           
         </Route>

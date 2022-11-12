@@ -1,31 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Note.css";
 
-const Note = ({note, handleEdit, handleDelete}) => {
-    const [note1, setNote1] = useState(note);
-    const [comment1, setComment1] = useState(note.comment);
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+const BOOK_URL = "/api/users/books";
 
+const Note = ({note, ubId, setComments}) => {
+    const [comment1, setComment1] = useState(note.comment);
+    const axiosPrivate = useAxiosPrivate();
 
     const handleOnChange = (e) =>{
-        // const newNote = JSON.parse(JSON.stringify(note1));
-        // newNote.comment = e.target.value;
-
-        // setNote1(newNote);
-
         setComment1(e.target.value);
     }
 
-    const handleEditIcon = () => {
-        if(comment1 === note1.comment)
+    const handleEditIcon = async () => {
+        if(comment1 === note.comment)
             return;
-        
-        const newNote = JSON.parse(JSON.stringify(note1));
-        newNote.comment = comment1;
-        setNote1(newNote);
 
-        handleEdit(note1.commentId, comment1);
+        const commentId = note.commentId;
+        const comment = comment1;
+        try {
+            const response = await axiosPrivate.put(BOOK_URL + "/" + ubId + "/comments" , JSON.stringify({commentId, comment}),
+            {headers: {"Content-Type": "application/json"}});
+    
+            setComments(prevState => {
+                const newComments = prevState.filter(com => com.commentId !== note.commentId);
+                newComments.push(response.data);
+
+                return newComments;
+            });
+    
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleDeleteIcon = async () => {
+
+        try {
+                const response = await axiosPrivate.delete(BOOK_URL + "/" + ubId + "/comments/" + note.commentId);
+                
+                setComments(prevState => {
+                    return prevState.filter(comm => comm.commentId !== note.commentId);
+                });
+            } catch (error) {
+                console.error(error);
+            }
     };
 
     return (
@@ -36,7 +57,7 @@ const Note = ({note, handleEdit, handleDelete}) => {
             />
             <div className="actionIcons">
                 <FontAwesomeIcon className="editIcon" icon={faPenToSquare} onClick ={() => handleEditIcon()}/>
-                <FontAwesomeIcon className="delIcon" icon={faTrashCan} onClick ={() => handleDelete(note.commentId)}/>
+                <FontAwesomeIcon className="delIcon" icon={faTrashCan} onClick ={() => handleDeleteIcon()}/>
             </div>
         </div>
     );

@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import BookWithNotes from "./BookWithNotes";
 
 const BooksWithNotesList = ({ userBooks }) => {
+
+    useEffect(() => {
+        console.log("List rerender");
+    }, []);
 
     return (
         <ul className="libraryList" >

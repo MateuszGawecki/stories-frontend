@@ -1,10 +1,14 @@
 import "./Books.css";
 
-import React, { useEffect, useState, useMemo, useCallback }  from "react";
+import React, { useEffect, useState, useCallback }  from "react";
+import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import BooksList from "../../items/book/BooksList";
 import SearchBar from "../../searchBar/SearchBar";
 import Pagination from "../../pagination/Pagination";
+
+import useAuth from "../../../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 
 const PageSize = 60;
 
@@ -21,9 +25,39 @@ const Books = () => {
     const [searchParam, setSearchParam] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
 
+    //=================================================
+    const { auth } = useAuth();
+    
+    const decoded = auth?.accessToken
+        ? jwt_decode(auth.accessToken)
+        : undefined;
+    const roles = decoded?.roles || [];
+
+    //=================================================
+    const navigate = useNavigate();
+    //=================================================
+
+    const handleButton = (e) => {
+        e.preventDefault();
+        navigate("/books/add");
+    };
+
     const setSearch = useCallback((param, value) => {
         setSearchParam(param);
         setSearchValue(value);
+    }, []);
+
+    const handleDeleteBook = useCallback( async (id) => {
+        try {
+            const response = await axiosPrivate.delete("/api/books/" + id);
+
+            const copy = JSON.parse(JSON.stringify(books));
+            const newBooks = copy.filter(book => book.bookId !== id);
+            
+            setBooks(newBooks);
+        } catch (error) {
+            console.error(error);
+        }
     }, []);
 
     useEffect(() => {
@@ -92,10 +126,14 @@ const Books = () => {
     return (
         <div className="booksMain">
             <div className="booksAside">
+                {roles.find(role => role === 'moderator') 
+                    ? <button className="buttonAddBook" onClick ={(e) => handleButton(e)}>Add new book</button>
+                    : null 
+                }
                 <SearchBar setSearch={setSearch}/>
             </div>
             <div className="booksListDiv">
-                {books && <BooksList books={books} name="booksList"/>}
+                {books && <BooksList books={books} name="booksList" handleDelete={handleDeleteBook}/>}
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPage}

@@ -19,6 +19,12 @@
     justify-content: center;
 }
 
+.buttonAddBook{
+    width: 80%;
+    align-self: center;
+    background-color: lightgreen;
+}
+
 .booksList {
     width: 82vw;
     display: grid;
