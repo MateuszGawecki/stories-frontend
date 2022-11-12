@@ -53,31 +53,16 @@ const BookWithNotes = ({ userBook}) => {
         
         if(newNote.current.value === "")
             return;
-
-        console.log(userBook1.commentDTOs);
         
         try {
             const response = await axiosPrivate.post(BOOK_URL + "/" + userBook.userBookId + "/comments", newNote.current.value,
             {headers: {"Content-Type": "text/plain"}});
 
-            console.log(userBook1.commentDTOs);
-
-            // setUserBook1(prevState => {
-            //     const newUb = prevState;
-            //     newUb.commentDTOs.push(response.data);
-
-            //     return newUb;
-            // });
-
-            // setComments(prevState => {
-            //     console.log(response.data);
-            //     const newComments = prevState;
-            //     console.log(prevState);
-            //     console.log(newComments);
-            //     newComments.push(response.data);
-            //     console.log(newComments);
-            //     return newComments;
-            // });
+            setComments(prevState => {
+                const newComments = prevState.filter(comm => comm);
+                newComments.push(response.data);
+                return newComments;
+            });
 
         } catch (error) {
             console.error(error);
