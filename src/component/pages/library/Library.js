@@ -54,9 +54,9 @@ const Library = () => {
         <div className="libraryMain">
             <div className="libraryAside">
                 <p>Recommended:</p>
-                {recom &&  <BooksList books={recom} name="recommendedList"/>}
+                {recom &&  <BooksList books={recom} name="recommendedList" isLibrary={true} setRecom={setRecom} setUserBooks={setUserBooks}/>}
             </div>
-            {userBooks && <BooksWithNotesList userBooks={userBooks}/>}
+            {userBooks && <BooksWithNotesList userBooks={userBooks} setUserBooks={setUserBooks}/>}
         </div>
     );
 };

@@ -9,7 +9,7 @@ import { faPlus, faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icon
 import useAuth from "../../../hooks/useAuth";
 import jwt_decode from "jwt-decode";
 
-const Book = ({ book, handleDelete }) => {
+const Book = ({ book, handleDelete, isLibrary, setRecom, setUserBooks }) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
@@ -28,6 +28,20 @@ const Book = ({ book, handleDelete }) => {
     const handlePlusIcon = async () => {
         try {
             const response = await axiosPrivate.post("/api/users/books/" + book.bookId);
+            console.log(response.data);
+
+            if(isLibrary){
+                setRecom(prevState => {
+                    const newRecom = prevState.filter(rec => rec.bookId !== book.bookId);
+                    return newRecom;
+                });
+
+                setUserBooks(prevState => {
+                    const newUBs = prevState.filter(ub => ub);
+                    newUBs.push(response.data);
+                    return newUBs;
+                });
+            }
         } catch (error) {
             console.error(error);
         }

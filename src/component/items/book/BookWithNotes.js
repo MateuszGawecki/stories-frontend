@@ -1,14 +1,16 @@
 import "./BookWithNotes.css";
 
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Rating from "../Rating/Rating";
 import Note from "../note/Note";
 
 const BOOK_URL = "/api/users/books";
 
-const BookWithNotes = ({ userBook}) => {
+const BookWithNotes = ({ userBook, setUserBooks}) => {
     const [userBook1, setUserBook1] = useState(userBook);
     const [comments, setComments] = useState(userBook.commentDTOs);
     const [img, setImg] = useState();
@@ -84,10 +86,25 @@ const BookWithNotes = ({ userBook}) => {
         }
     };
 
+    const handleDeleteUserBook = async () => {
+
+        try {
+            const response = await axiosPrivate.delete(BOOK_URL + "/" + userBook.userBookId);
+
+            setUserBooks(prevState => {
+                const newBooks = prevState.filter(book => book.userBookId !== userBook1.userBookId);
+                return newBooks;
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className="userBook" id={userBook1.userBookId}>
             {img && <img src={img} alt=" " />}
             <div className="userBookInfo">
+                <FontAwesomeIcon icon={faTimes} onClick ={() => handleDeleteUserBook()} />
                 <h5>{userBook1.bookDTO.title}</h5>
                 <p className="userBookDesc">{userBook1.bookDTO.description}</p>
                 <div className="userBookAuthors">

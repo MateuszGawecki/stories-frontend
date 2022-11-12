@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import BookWithNotes from "./BookWithNotes";
 
-const BooksWithNotesList = ({ userBooks }) => {
+const BooksWithNotesList = ({ userBooks, setUserBooks }) => {
 
     useEffect(() => {
         console.log("List rerender");
@@ -11,7 +11,7 @@ const BooksWithNotesList = ({ userBooks }) => {
         <ul className="libraryList" >
             {userBooks.map(userBook => (
                 <li key={userBook.userBookId}>
-                    <BookWithNotes userBook={userBook}/>
+                    <BookWithNotes userBook={userBook} setUserBooks={setUserBooks}/>
                 </li>
             ))}
         </ul>
