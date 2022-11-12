@@ -46,7 +46,7 @@ const AddBook = () => {
         }
     }
 
-    const saveBook = async (image_path) => {
+    const saveBook = async (imagePath) => {
         var authors = new Array();
         const author = {authorName,authorSurname};
         authors.push(author);
@@ -61,7 +61,7 @@ const AddBook = () => {
         try {
             const response = await axiosPrivate.post(
                 CREATE_BOOK_URL,
-                JSON.stringify({title, description, authors, genres, globalScore, votes, image_path}),
+                JSON.stringify({title, description, authors, genres, globalScore, votes, imagePath}),
                 {
                     withCredentials: true,
                     headers: { 'Content-Type': 'application/json'}

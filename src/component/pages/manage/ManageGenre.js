@@ -6,7 +6,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-const GENRES_URL = "/api/genres"
+const GENRES_URL = "/api/genres";
 
 const Genre = ({genre, setGenres}) => {
     const [genreName1, setGenreName1] = useState(genre.name);

@@ -42,7 +42,7 @@ function App() {
             <Route path="/books/add" element={<AddBook />} />
             <Route path="/authors/add" element={<ManageAuthor />} />
             <Route path="/genres/add" element={<ManageGenre />} />
-            <Route path="/books/:id" element={<ModifyBook />} />
+            <Route path="/books/:id" element={<ModifyBook/>} />
           </Route>
           
         </Route>
