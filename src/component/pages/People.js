@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import UsersList from "../items/UsersList";
+import UsersList from "../items/user/UsersList";
 
 const PEOPLE_URL = "/api/user/all";
 

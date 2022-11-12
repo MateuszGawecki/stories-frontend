@@ -9,7 +9,7 @@ import { faPlus, faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icon
 import useAuth from "../../../hooks/useAuth";
 import jwt_decode from "jwt-decode";
 
-const Book = ({ book, handleDelete, isLibrary, setRecom, setUserBooks }) => {
+const Book = ({ book, setBooks, isLibrary, setRecom, setUserBooks }) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
@@ -87,7 +87,6 @@ const Book = ({ book, handleDelete, isLibrary, setRecom, setUserBooks }) => {
                 {roles.find(role => role === 'moderator') 
                     ? <div className="modAction">
                         <FontAwesomeIcon icon={faPenToSquare} onClick ={() => handleChangeIcon()} />
-                        <FontAwesomeIcon icon={faTimes} onClick ={() => handleDelete(book.bookId)} />
                       </div> 
                     : null 
                 }
@@ -95,6 +94,11 @@ const Book = ({ book, handleDelete, isLibrary, setRecom, setUserBooks }) => {
                 <div className="bookAuthors">
                     {book.authors?.map(author => {
                         return <p>{author.authorName + " " + author.authorSurname}</p>
+                    })}
+                </div>
+                <div className="bookGenres">
+                    {book.genres?.map(genre => {
+                        return <p>{genre.genreName}</p>
                     })}
                 </div>
                 <p className="bookDesc">{book.description}</p>

@@ -13,7 +13,11 @@ import Layout from './component/pages/Layout';
 import Unauthorized from './component/pages/Unauthorized';
 import RequireAuth from './component/RequireAuth';
 import PersistLogin from './component/PersistLogin';
-import AddBook from './component/pages/AddBook';
+import AddBook from './component/pages/manage/AddBook';
+import ManageAuthor from './component/pages/manage/ManageAuthor';
+import ManageGenre from './component/pages/manage/ManageGenre';
+import ModifyBook from './component/pages/manage/ManageBook';
+
 
 function App() {
 
@@ -36,7 +40,9 @@ function App() {
           {/* sciezki pod inne role*/}
           <Route element={<RequireAuth allowedRoles={["moderator"]}/>}>
             <Route path="/books/add" element={<AddBook />} />
-            <Route path="/books/:id" element={<AddBook />} />
+            <Route path="/authors/add" element={<ManageAuthor />} />
+            <Route path="/genres/add" element={<ManageGenre />} />
+            <Route path="/books/:id" element={<ModifyBook />} />
           </Route>
           
         </Route>

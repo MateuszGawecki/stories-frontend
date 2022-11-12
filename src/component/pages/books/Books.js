@@ -37,27 +37,24 @@ const Books = () => {
     const navigate = useNavigate();
     //=================================================
 
-    const handleButton = (e) => {
+    const handleButtonAddBook = (e) => {
         e.preventDefault();
         navigate("/books/add");
+    };
+
+    const handleButtonAddAuthor = (e) => {
+        e.preventDefault();
+        navigate("/authors/add");
+    };
+
+    const handleButtonAddGenre = (e) => {
+        e.preventDefault();
+        navigate("/genres/add");
     };
 
     const setSearch = useCallback((param, value) => {
         setSearchParam(param);
         setSearchValue(value);
-    }, []);
-
-    const handleDeleteBook = useCallback( async (id) => {
-        try {
-            const response = await axiosPrivate.delete("/api/books/" + id);
-
-            const copy = JSON.parse(JSON.stringify(books));
-            const newBooks = copy.filter(book => book.bookId !== id);
-            
-            setBooks(newBooks);
-        } catch (error) {
-            console.error(error);
-        }
     }, []);
 
     useEffect(() => {
@@ -127,13 +124,17 @@ const Books = () => {
         <div className="booksMain">
             <div className="booksAside">
                 {roles.find(role => role === 'moderator') 
-                    ? <button className="buttonAddBook" onClick ={(e) => handleButton(e)}>Add new book</button>
+                    ? <div>
+                        <button className="buttonAddBook" onClick ={(e) => handleButtonAddBook(e)}>Add new book</button>
+                        <button className="buttonAddBook" onClick ={(e) => handleButtonAddAuthor(e)}>Manage authors</button>
+                        <button className="buttonAddBook" onClick ={(e) => handleButtonAddGenre(e)}>Manage genres</button>
+                    </div>
                     : null 
                 }
                 <SearchBar setSearch={setSearch}/>
             </div>
             <div className="booksListDiv">
-                {books && <BooksList books={books} name="booksList" handleDelete={handleDeleteBook}/>}
+                {books && <BooksList books={books} name="booksList" setBooks={setBooks}/>}
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPage}

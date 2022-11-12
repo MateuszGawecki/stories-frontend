@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import { Link, useNavigate } from "react-router-dom";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { useNavigate } from "react-router-dom";
 
 const CREATE_BOOK_URL = "/api/books";
 const SAVE_IMAGE_PATH = "/api/image";
