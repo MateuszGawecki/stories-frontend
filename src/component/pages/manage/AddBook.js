@@ -1,13 +1,21 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 
 const CREATE_BOOK_URL = "/api/books";
 const SAVE_IMAGE_PATH = "/api/image";
+const GENRES_URL = "/api/genres/";
+const AUTHORS_URL = "/api/authors/";
 
 const AddBook = () => {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
+
+    const [allGenres, setAllGenres] = useState();
+    const [allAuthors, setAllAuthors] = useState();
+    const [newGenres, setNewGenres] = useState([]);
+    const [newAuthors, setNewAuthors] = useState([]);
 
     const errRef = useRef();
     const [success, setSuccess] = useState(false);
@@ -18,6 +26,53 @@ const AddBook = () => {
     const [authorName, setAuthorName] = useState("");
     const [authorSurname, setAuthorSurname] = useState("");
     const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+        const controller = new AbortController();
+
+        const getGenres = async () => {
+            try {
+                const response = await axiosPrivate.get(GENRES_URL, {
+                    signal: controller.signal
+                });
+
+                const options = [];
+
+                response.data.map(genre => options.push({"value" : genre.genreId , "label": genre.name}));
+
+                isMounted && setAllGenres(options);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        const getAuthors = async () => {
+            try {
+                const response = await axiosPrivate.get(AUTHORS_URL, {
+                    signal: controller.signal
+                });
+
+                const options = [];
+
+                response.data.map(author => options.push({"value" : author.authorId , "label": author.authorName + " " + author.authorSurname}));
+
+
+                isMounted && setAllAuthors(options);
+                
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        getGenres();
+        getAuthors();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        };
+    }, []);
 
     const saveImage = async () => {
         const formData = new FormData();
@@ -48,12 +103,13 @@ const AddBook = () => {
 
     const saveBook = async (imagePath) => {
         var authors = new Array();
-        const author = {authorName,authorSurname};
-        authors.push(author);
+        newAuthors.map(newAuthor => {
+            const names = newAuthor.label.split(' ');
+            authors.push({"authorId": newAuthor.value, "authorName": names[0], "authorSurname": names[1]});
+        });
 
         var genres = new Array();
-        // const genre = {genreName};
-        // genres.push(genre);
+        newGenres.map(newGenre => genres.push({"genreId": newGenre.value, "name": newGenre.label}));
 
         const globalScore = 0;
         const votes = 0;
@@ -86,6 +142,14 @@ const AddBook = () => {
         const imagePath = await saveImage();
         saveBook(imagePath);
     };
+
+    const handleChangeGenre = (selected) => {
+        setNewGenres(selected);
+    }
+
+    const handleChangeAuthor = (selected) => {
+        setNewAuthors(selected);
+    }
 
     return (
         <>
@@ -122,25 +186,8 @@ const AddBook = () => {
                     requied
                 />
 
-                <label htmlFor="authorName">
-                    Author Name:
-                </label>
-                <input 
-                    type="text" 
-                    id="authorName" 
-                    onChange={(e) => setAuthorName(e.target.value)} 
-                    requied
-                />
-
-                <label htmlFor="authorSurname">
-                    Author Surname:
-                </label>
-                <input 
-                    type="text" 
-                    id="authorSurname" 
-                    onChange={(e) => setAuthorSurname(e.target.value)} 
-                    requied
-                />
+                <Select isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
+                <Select isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
 
                 <label htmlFor="image">
                     Image:

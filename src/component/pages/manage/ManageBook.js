@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Select from "react-select";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const GENRES_URL = "/api/genres/";
 const AUTHORS_URL = "/api/authors/";
@@ -60,7 +59,6 @@ const ModifyBook = ({bookId}) => {
             const names = newAuthor.label.split(' ');
             authors.push({"authorId": newAuthor.value, "authorName": names[0], "authorSurname": names[1]});
         });
-        console.log(authors);
 
         var genres = new Array();
         newGenres.map(newGenre => genres.push({"genreId": newGenre.value, "name": newGenre.label}));
