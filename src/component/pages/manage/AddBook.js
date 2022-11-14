@@ -23,8 +23,6 @@ const AddBook = () => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [authorName, setAuthorName] = useState("");
-    const [authorSurname, setAuthorSurname] = useState("");
     const [image, setImage] = useState(null);
 
     useEffect(() => {
