@@ -3,6 +3,7 @@ import "./People.css";
 import React, { useEffect, useState }  from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import UsersList from "../../items/user/UsersList";
+import FriendsList from "../../items/user/FriendsList";
 import Pagination from "../../pagination/Pagination";
 
 const PEOPLE_URL = "/api/users";
@@ -13,9 +14,6 @@ const People = () => {
     const axiosPrivate = useAxiosPrivate();
     
     const [friends, setFriends] = useState();
-    const [currentPageFriends, setCurrentPageFriends] = useState(1);
-    const [totalCountFriends, setTotalCountFriends] = useState(null);
-    const [totalPageCountFriends, setTotalPageCountFriends] = useState(null);
     
     const [users, setUsers] = useState();
     const [currentPageUsers, setCurrentPageUsers] = useState(1);
@@ -28,13 +26,11 @@ const People = () => {
 
         const getFriends = async () => {
             try {
-                const response = await axiosPrivate.get(PEOPLE_URL + "/friends?page=" + (currentPageFriends - 1), {
+                const response = await axiosPrivate.get(PEOPLE_URL + "/friends", {
                     signal: controller.signal
                 });
     
-                isMounted && setFriends(response.data.users);
-                isMounted && setTotalCountFriends(response.data.totalItems);
-                isMounted && setTotalPageCountFriends(response.data.totalPages);
+                isMounted && setFriends(response.data);
             } catch (error) {
                 console.error(error);
             }
@@ -46,7 +42,7 @@ const People = () => {
             isMounted = false;
             controller.abort();
         };
-    }, [currentPageFriends]);
+    }, []);
 
     useEffect(() => {
         let isMounted = true;
@@ -77,15 +73,7 @@ const People = () => {
     return (
         <div className="peopleMain">
             <div className="peopleAside">
-                {friends && <UsersList users={friends} name="friendsList" setUsers={setFriends}/>}
-                <Pagination
-                    className="pagination-bar"
-                    currentPage={currentPageFriends}
-                    totalCount={totalCountFriends}
-                    totalPageCount={totalPageCountFriends}
-                    pageSize={PageSize}
-                    onPageChange={page => setCurrentPageFriends(page)}
-                />
+                {friends && <FriendsList users={friends} name="friendsList" setUsers={setFriends}/>}
             </div>
             <div className="usersListDiv">
                 { users && <UsersList users={users} name="usersList" setUsers={setUsers}/>}

@@ -2,16 +2,16 @@ import "./User.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const User = ({user}) => {
+const Friend = ({user}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
-    const handlePlusIcon = async () => {
+    const handleMinusIcon = async () => {
         //add to friends
         try {
-            const response = await axiosPrivate.post("/api/users/friends/" + user.userId);
+            const response = await axiosPrivate.delete("/api/users/friends/" + user.userId);
 
         } catch (error) {
             console.error(error);
@@ -57,10 +57,10 @@ const User = ({user}) => {
             {img && <img src={img} alt=" " />}
             <div className="userDetails">
                 <p>{user.name + " " + user.surname}</p>
-                <FontAwesomeIcon icon={faPlus} onClick ={() => handlePlusIcon()} />
+                <FontAwesomeIcon icon={faMinus} onClick ={() => handleMinusIcon()} />
             </div>
         </div>
     );
 };
 
-export default User;
+export default Friend;
