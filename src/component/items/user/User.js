@@ -1,10 +1,27 @@
 import "./User.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const User = ({user}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
+
+    const handlePlusIcon = async () => {
+        //add to friends
+        try {
+            const response = await axiosPrivate.post("/api/users/firends/" + user.userId);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const handleDoubleClick = () => {
+        //navigate to user with id 
+        // to see user private library
+    }
     
     useEffect(() => {
         let isMounted = true;
@@ -36,10 +53,11 @@ const User = ({user}) => {
     }, []);
 
     return (
-        <div className="userDiv">
+        <div className="userDiv" onDoubleClick={handleDoubleClick}>
             {img && <img src={img} alt=" " />}
             <div className="userDetails">
                 <p>{user.name + " " + user.surname}</p>
+                <FontAwesomeIcon icon={faPlus} onClick ={() => handlePlusIcon()} />
             </div>
         </div>
     );

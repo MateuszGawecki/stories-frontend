@@ -104,7 +104,6 @@ const Books = () => {
                 });
     
                 isMounted && setBooks(response.data.books);
-                // isMounted && setSearchResults(response.data.books);
                 isMounted && setTotalCount(response.data.totalItems);
                 isMounted && setTotalPageCount(response.data.totalPages);
             } catch (error) {
