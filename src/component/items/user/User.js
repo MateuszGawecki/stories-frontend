@@ -4,18 +4,13 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const User = ({user}) => {
+const User = ({user, handleAddFriend}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
     const handlePlusIcon = async () => {
         //add to friends
-        try {
-            const response = await axiosPrivate.post("/api/users/friends/" + user.userId);
-
-        } catch (error) {
-            console.error(error);
-        }
+        handleAddFriend(user);
     }
 
     const handleDoubleClick = () => {

@@ -1,21 +1,15 @@
-import "./User.css";
+import "./Friend.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const Friend = ({user}) => {
+const Friend = ({user, handleDeleteFriend}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
 
     const handleMinusIcon = async () => {
-        //add to friends
-        try {
-            const response = await axiosPrivate.delete("/api/users/friends/" + user.userId);
-
-        } catch (error) {
-            console.error(error);
-        }
+        handleDeleteFriend(user.userId);
     }
 
     const handleDoubleClick = () => {
@@ -53,9 +47,9 @@ const Friend = ({user}) => {
     }, []);
 
     return (
-        <div className="userDiv" onDoubleClick={handleDoubleClick}>
+        <div className="friendDiv" onDoubleClick={handleDoubleClick}>
             {img && <img src={img} alt=" " />}
-            <div className="userDetails">
+            <div className="friendDetails">
                 <p>{user.name + " " + user.surname}</p>
                 <FontAwesomeIcon icon={faMinus} onClick ={() => handleMinusIcon()} />
             </div>

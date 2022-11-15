@@ -9,28 +9,86 @@ import SearchBarPeople from "../../searchBar/SearchBarPeople";
 
 const PEOPLE_URL = "/api/users";
 
-const PageSize = 2;
+const PageSize = 60;
 
 const People = () => {
     const axiosPrivate = useAxiosPrivate();
     
     const [friends, setFriends] = useState();
+    const [searchedFriends, setSearchedFriends] = useState();
     
     const [users, setUsers] = useState();
     const [currentPageUsers, setCurrentPageUsers] = useState(1);
     const [totalCountUsers, setTotalCountUsers] = useState(null);
     const [totalPageCountUsers, setTotalPageCountUsers] = useState(null);
 
+    const handleDeleteFriend = useCallback( async (friendId) => {
+
+        try {
+            const response = await axiosPrivate.delete("/api/users/friends/" + friendId);
+
+            setFriends(prevState => {
+                const newFriends = prevState.filter(friend => friend.userId !== friendId)
+
+                return newFriends;
+            });
+
+            setSearchedFriends(prevState => {
+                const newFriends = prevState.filter(friend => friend.userId !== friendId)
+
+                return newFriends;
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
+    const handleAddFriend = useCallback( async (friend) => {
+
+        try {
+            const response = await axiosPrivate.post("/api/users/friends/" + friend.userId);
+
+            setFriends(prevState => {
+                const newFriends = prevState.filter(friend => friend);
+                newFriends.push(friend);
+                return newFriends;
+            });
+
+            setSearchedFriends(prevState => {
+                const newFriends = prevState.filter(friend => friend);
+                newFriends.push(friend);
+                return newFriends;
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
     const handleSearchChange = useCallback((searchVal) => {
         let isMounted = true;
         const controller = new AbortController();
 
-        // const searchFriends = () => {
-        //     setFriends(prevState => {
+        const searchFriends = () => {
+            setSearchedFriends(prevState => {
+                
+                if(!searchVal)
+                    return friends;
 
-        //         const newFriends = prevState.filter(friend => )
-        //     });
-        //};
+                const names = searchVal.split(' ');
+                const newFriends = prevState.filter(friend => {
+                    if(names.length === 2)
+                        return friend.name.includes(names[0]) && friend.surname.includes(names[1]);
+                    else if(names.length === 1)
+                        return friend.name.includes(names[0]) || friend.surname.includes(names[0]);
+                    else if(names.length > 2)
+                        return null;
+                })
+
+                return newFriends;
+            });
+        };
 
         const getUsersWithSearch = async () => {
 
@@ -46,7 +104,6 @@ const People = () => {
                     signal: controller.signal
                 });
 
-                console.log(response.data);
                 isMounted && setUsers(response.data.users);
                 isMounted && setTotalCountUsers(response.data.totalItems);
                 isMounted && setTotalPageCountUsers(response.data.totalPages);
@@ -57,7 +114,7 @@ const People = () => {
         };
 
         getUsersWithSearch();
-        //searchFriends();
+        searchFriends();
 
         return () => {
             isMounted = false;
@@ -76,6 +133,7 @@ const People = () => {
                 });
     
                 isMounted && setFriends(response.data);
+                isMounted && setSearchedFriends(response.data);
             } catch (error) {
                 console.error(error);
             }
@@ -119,10 +177,10 @@ const People = () => {
         <div className="peopleMain">
             <div className="peopleAside">
                 <SearchBarPeople handleSearchChange={handleSearchChange}/>
-                {friends && <FriendsList users={friends} name="friendsList" setUsers={setFriends}/>}
+                {searchedFriends && <FriendsList users={searchedFriends} name="friendsList" handleDeleteFriend={handleDeleteFriend}/>}
             </div>
             <div className="usersListDiv">
-                { users && <UsersList users={users} name="usersList" setUsers={setUsers}/>}
+                { users && <UsersList users={users} name="usersList" handleAddFriend={handleAddFriend}/>}
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPageUsers}
