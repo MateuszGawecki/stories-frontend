@@ -1,14 +1,15 @@
 import "./People.css";
 
-import React, { useEffect, useState }  from "react";
+import React, { useCallback, useEffect, useState }  from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import UsersList from "../../items/user/UsersList";
 import FriendsList from "../../items/user/FriendsList";
 import Pagination from "../../pagination/Pagination";
+import SearchBarPeople from "../../searchBar/SearchBarPeople";
 
 const PEOPLE_URL = "/api/users";
 
-const PageSize = 50;
+const PageSize = 2;
 
 const People = () => {
     const axiosPrivate = useAxiosPrivate();
@@ -19,6 +20,50 @@ const People = () => {
     const [currentPageUsers, setCurrentPageUsers] = useState(1);
     const [totalCountUsers, setTotalCountUsers] = useState(null);
     const [totalPageCountUsers, setTotalPageCountUsers] = useState(null);
+
+    const handleSearchChange = useCallback((searchVal) => {
+        let isMounted = true;
+        const controller = new AbortController();
+
+        // const searchFriends = () => {
+        //     setFriends(prevState => {
+
+        //         const newFriends = prevState.filter(friend => )
+        //     });
+        //};
+
+        const getUsersWithSearch = async () => {
+
+            let searchQuery;
+            if(!searchVal){
+                searchQuery = '';
+            }else{
+                searchQuery = "?searchValue=" + searchVal;
+            }
+
+            try {
+                const response = await axiosPrivate.get(PEOPLE_URL  + searchQuery, {
+                    signal: controller.signal
+                });
+
+                console.log(response.data);
+                isMounted && setUsers(response.data.users);
+                isMounted && setTotalCountUsers(response.data.totalItems);
+                isMounted && setTotalPageCountUsers(response.data.totalPages);
+                isMounted && setCurrentPageUsers(1);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        getUsersWithSearch();
+        //searchFriends();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        };
+    }, []);
 
     useEffect(() => {
         let isMounted = true;
@@ -53,7 +98,7 @@ const People = () => {
                 const response = await axiosPrivate.get(PEOPLE_URL + "?page=" + (currentPageUsers - 1), {
                     signal: controller.signal
                 });
-
+    
                 isMounted && setUsers(response.data.users);
                 isMounted && setTotalCountUsers(response.data.totalItems);
                 isMounted && setTotalPageCountUsers(response.data.totalPages);
@@ -73,6 +118,7 @@ const People = () => {
     return (
         <div className="peopleMain">
             <div className="peopleAside">
+                <SearchBarPeople handleSearchChange={handleSearchChange}/>
                 {friends && <FriendsList users={friends} name="friendsList" setUsers={setFriends}/>}
             </div>
             <div className="usersListDiv">
