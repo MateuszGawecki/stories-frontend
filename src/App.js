@@ -17,6 +17,7 @@ import AddBook from './component/pages/manage/AddBook';
 import ManageAuthor from './component/pages/manage/ManageAuthor';
 import ManageGenre from './component/pages/manage/ManageGenre';
 import ModifyBook from './component/pages/manage/ManageBook';
+import ManageUsersRoles from './component/pages/manage/ManageUsersRoles';
 
 
 function App() {
@@ -37,12 +38,15 @@ function App() {
             <Route path="/settings" element={<Settings />} />
           </Route>
 
-          {/* sciezki pod inne role*/}
           <Route element={<RequireAuth allowedRoles={["moderator"]}/>}>
             <Route path="/books/add" element={<AddBook />} />
-            <Route path="/authors/add" element={<ManageAuthor />} />
-            <Route path="/genres/add" element={<ManageGenre />} />
+            <Route path="/authors/manage" element={<ManageAuthor />} />
+            <Route path="/genres/manage" element={<ManageGenre />} />
             <Route path="/books/:id" element={<ModifyBook/>} />
+          </Route>
+
+          <Route element={<RequireAuth allowedRoles={["admin"]}/>}>
+            <Route path="/people/roles/manage" element={<ManageUsersRoles />} />
           </Route>
           
         </Route>

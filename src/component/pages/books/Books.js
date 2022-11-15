@@ -44,12 +44,12 @@ const Books = () => {
 
     const handleButtonAddAuthor = (e) => {
         e.preventDefault();
-        navigate("/authors/add");
+        navigate("/authors/manage");
     };
 
     const handleButtonAddGenre = (e) => {
         e.preventDefault();
-        navigate("/genres/add");
+        navigate("/genres/manage");
     };
 
     const setSearch = useCallback((param, value) => {

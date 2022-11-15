@@ -6,6 +6,9 @@ import UsersList from "../../items/user/UsersList";
 import FriendsList from "../../items/user/FriendsList";
 import Pagination from "../../pagination/Pagination";
 import SearchBarPeople from "../../searchBar/SearchBarPeople";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 
 const PEOPLE_URL = "/api/users";
 
@@ -13,6 +16,7 @@ const PageSize = 60;
 
 const People = () => {
     const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
     
     const [friends, setFriends] = useState();
     const [searchedFriends, setSearchedFriends] = useState();
@@ -21,6 +25,22 @@ const People = () => {
     const [currentPageUsers, setCurrentPageUsers] = useState(1);
     const [totalCountUsers, setTotalCountUsers] = useState(null);
     const [totalPageCountUsers, setTotalPageCountUsers] = useState(null);
+
+    //=======================
+    const { auth } = useAuth();
+    
+    const decoded = auth?.accessToken
+        ? jwt_decode(auth.accessToken)
+        : undefined;
+    const roles = decoded?.roles || [];
+
+    const isAdmin = roles.find(role => role === 'moderator') ? true : false;
+    //=======================
+
+    const handleButtonManageRoles = (e) => {
+        e.preventDefault();
+        navigate("/people/roles/manage");
+    };
 
     const handleDeleteFriend = useCallback( async (friendId) => {
 
@@ -176,6 +196,7 @@ const People = () => {
     return (
         <div className="peopleMain">
             <div className="peopleAside">
+                {isAdmin ? <button className="buttonManageRoles" onClick ={(e) => handleButtonManageRoles(e)}>Manage users roles</button> : null}
                 <SearchBarPeople handleSearchChange={handleSearchChange}/>
                 {searchedFriends && <FriendsList users={searchedFriends} name="friendsList" handleDeleteFriend={handleDeleteFriend}/>}
             </div>
