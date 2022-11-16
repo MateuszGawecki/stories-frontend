@@ -86,7 +86,7 @@ const Book = ({ book, setBooks, isLibrary, setRecom, setUserBooks }) => {
             <div className="bookInfo">
                 {roles.find(role => role === 'moderator') 
                     ? <div className="modAction">
-                        <FontAwesomeIcon icon={faPenToSquare} onClick ={() => handleChangeIcon()} />
+                        <FontAwesomeIcon className="icon" icon={faPenToSquare} onClick ={() => handleChangeIcon()} />
                       </div> 
                     : null 
                 }
@@ -98,13 +98,13 @@ const Book = ({ book, setBooks, isLibrary, setRecom, setUserBooks }) => {
                 </div>
                 <div className="bookGenres">
                     {book.genres?.map(genre => {
-                        return <p>{genre.genreName}</p>
+                        return <p>{genre.name}</p>
                     })}
                 </div>
                 <p className="bookDesc">{book.description}</p>
                 <div className="bookSocialAction">
                     <p>Grade: {book.globalScore} ({book.votes})</p>
-                    <FontAwesomeIcon icon={faPlus} onClick ={() => handlePlusIcon()} />
+                    <FontAwesomeIcon className="icon" icon={faPlus} onClick ={() => handlePlusIcon()} />
                 </div>
             </div>
             {img && <img src={img} alt=" " />}

@@ -1,4 +1,5 @@
 .book {
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
     border: solid;
     border-color: black;
     border-width: 1px;
@@ -32,7 +33,13 @@
     overflow: auto;
 }
 
-.bookAuthors>p {
+.bookGenres {
+    margin: 0.2em;
+    height: 10%;
+    overflow: auto;
+}
+
+.bookAuthors>p, .bookGenres>p {
     margin: 0.2em;
 }
 
@@ -48,7 +55,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.icon{
+    width: 1.5em;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 0.3em;
+    color: black;
+}
+
+.icon:hover{
+    background-color: greenyellow;
 }
 
 ::-webkit-scrollbar {

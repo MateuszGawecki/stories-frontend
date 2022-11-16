@@ -32,7 +32,15 @@
     width: 6em;
 }
 
+.navbar>ul>li:hover {
+    background-color: beige;
+}
+
 .navbar>button {
     height: 2em;
     border-radius: 0.5em;
+}
+
+.navbar>button:hover{
+    background-color: red;
 }

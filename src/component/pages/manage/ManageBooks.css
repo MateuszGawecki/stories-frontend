@@ -1,0 +1,44 @@
+.manageBookMain{
+    height: 82%;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.buttonBookDelete{
+    border-radius: 1em;
+    background-color: orangered;
+}
+
+.buttonBookDelete:hover{
+    background-color: red;
+}
+
+.bookEditDiv>img{
+    width: 15em;
+    margin-right: 4em;
+}
+
+.bookEditDiv{
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bookEditDiv>form{
+    margin-left: 4em;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.bookEditDiv>form>input{
+    text-align: center;
+}
+

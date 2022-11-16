@@ -220,24 +220,24 @@ const ModifyBook = ({bookId}) => {
 
     return ( 
         <div className="manageBookMain">
-            <button onClick={handleDeleteBook}>Delete book</button>
-            {img && <img src={img} alt=" " />}
+            <button className="buttonBookDelete" onClick={handleDeleteBook}>Delete book</button>
             <div className="bookEditDiv">
+                {img && <img src={img} alt=" " />}
                 <form onSubmit={handleSubmit}>
                     <input 
                         value={newTitle}
                         onChange={(e) => setNewTitle(e.target.value)}
                     />
-                    <input 
+                    <textarea
                         value={newDesc}
                         onChange={(e) => setNewDesc(e.target.value)}
                     />
+                    <Select isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
+                    <Select isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
                     <input 
                         type="file"
                         onChange={(e) => handleImageChange(e)}
                     />
-                    <Select isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
-                    <Select isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
                     <button>Submit changes</button>
                 </form>
             </div>

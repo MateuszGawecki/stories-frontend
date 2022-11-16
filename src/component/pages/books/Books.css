@@ -19,10 +19,24 @@
     justify-content: center;
 }
 
-.buttonAddBook{
-    width: 80%;
+.managingButtons{
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.buttonAddBook, .buttonAddAuthor, .buttonAddGenre{
+    width: 55%;
     align-self: center;
     background-color: lightgreen;
+
+    border-radius: 0.5em;
+}
+
+.buttonAddBook:hover, .buttonAddAuthor:hover, .buttonAddGenre:hover{
+    background-color: beige;
 }
 
 .booksList {

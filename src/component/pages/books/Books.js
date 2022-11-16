@@ -123,10 +123,10 @@ const Books = () => {
         <div className="booksMain">
             <div className="booksAside">
                 {roles.find(role => role === 'moderator') 
-                    ? <div>
+                    ? <div className="managingButtons">
                         <button className="buttonAddBook" onClick ={(e) => handleButtonAddBook(e)}>Add new book</button>
-                        <button className="buttonAddBook" onClick ={(e) => handleButtonAddAuthor(e)}>Manage authors</button>
-                        <button className="buttonAddBook" onClick ={(e) => handleButtonAddGenre(e)}>Manage genres</button>
+                        <button className="buttonAddAuthor" onClick ={(e) => handleButtonAddAuthor(e)}>Manage authors</button>
+                        <button className="buttonAddGenre" onClick ={(e) => handleButtonAddGenre(e)}>Manage genres</button>
                     </div>
                     : null 
                 }

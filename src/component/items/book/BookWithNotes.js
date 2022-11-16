@@ -104,7 +104,7 @@ const BookWithNotes = ({ userBook, setUserBooks}) => {
         <div className="userBook" id={userBook1.userBookId}>
             {img && <img src={img} alt=" " />}
             <div className="userBookInfo">
-                <FontAwesomeIcon icon={faTimes} onClick ={() => handleDeleteUserBook()} />
+                <FontAwesomeIcon className="icon" icon={faTimes} onClick ={() => handleDeleteUserBook()} />
                 <h5>{userBook1.bookDTO.title}</h5>
                 <p className="userBookDesc">{userBook1.bookDTO.description}</p>
                 <div className="userBookAuthors">

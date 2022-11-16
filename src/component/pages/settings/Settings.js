@@ -153,7 +153,6 @@ const Settings = () => {
                         <input
                             type="file"
                             onChange={(e) => {
-                                //console.log(event.target.files[0]);
                                 setNewImg(e.target.files[0]);
                             }}
                         />
@@ -164,6 +163,7 @@ const Settings = () => {
             }
             {user 
                 ? ( <div className="userDetails">
+                        <div className="detCont">
                         <p>Email: {user.email}</p>
 
                         <label htmlFor="name">Name: </label>
@@ -205,6 +205,7 @@ const Settings = () => {
                             Allowed special characters: ! @ # $ %
                         </p>
                         <button onClick={submitUserDetails}>Submit new user info!</button>
+                        </div>
                     </div>
                   ) 
                 : null
