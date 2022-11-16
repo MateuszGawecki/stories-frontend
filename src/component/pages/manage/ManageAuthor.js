@@ -1,5 +1,4 @@
 import "./ManageAuthor.css";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -62,7 +61,6 @@ const Author = ({author, setAuthors}) => {
 }
 
 const ManageAuthor = () => {
-    const navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [authors, setAuthors] = useState();
     const newName = useRef();
@@ -113,7 +111,6 @@ const ManageAuthor = () => {
 
     return ( 
         <div className="manageAuthorMain">
-            <button onClick={() => navigate(-1)}>Go back</button>
             {authors ? <ul className="allAuthorsList">
                             {
                                 authors.map(author => (

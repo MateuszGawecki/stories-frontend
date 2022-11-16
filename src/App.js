@@ -18,6 +18,7 @@ import ManageAuthor from './component/pages/manage/ManageAuthor';
 import ManageGenre from './component/pages/manage/ManageGenre';
 import ModifyBook from './component/pages/manage/ManageBook';
 import ManageUsersRoles from './component/pages/manage/ManageUsersRoles';
+import UserDetails from './component/pages/people/UserDetails';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="/library" element={<Library />} />
             <Route path="/people" element={<People />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/users/:id" element={<UserDetails/>} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={["moderator"]}/>}>

@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 const CREATE_BOOK_URL = "/api/books";
@@ -10,7 +9,6 @@ const AUTHORS_URL = "/api/authors/";
 
 const AddBook = () => {
     const axiosPrivate = useAxiosPrivate();
-    const navigate = useNavigate();
 
     const [allGenres, setAllGenres] = useState();
     const [allAuthors, setAllAuthors] = useState();
@@ -151,7 +149,6 @@ const AddBook = () => {
 
     return (
         <>
-        <button onClick={() => navigate(-1)}>Go back</button>
         { success ? (
             <section>
                 <h1>Success!</h1>

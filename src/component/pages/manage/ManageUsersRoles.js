@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import UserWithRoles from "../../items/user/UserWithRoles";
 import Pagination from "../../pagination/Pagination";
@@ -12,7 +11,6 @@ const ROLES_URL = "/api/roles";
 const PageSize = 60;
 
 const ManageUserRoles = () => {
-    const navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
 
     const [roles, setRoles] = useState();
@@ -109,7 +107,6 @@ const ManageUserRoles = () => {
 
     return ( 
         <div className="manageRolesDiv">
-            <button onClick={() => navigate(-1)}>Go back</button>
             <SearchBarPeople handleSearchChange={handleSearchChange}/>
             <ul className="usersToManage">
             {users ? users.map(user => (

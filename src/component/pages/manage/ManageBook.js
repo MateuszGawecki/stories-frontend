@@ -220,7 +220,6 @@ const ModifyBook = ({bookId}) => {
 
     return ( 
         <div className="manageBookMain">
-            <button onClick={() => navigate(-1)}>Go back</button>
             <button onClick={handleDeleteBook}>Delete book</button>
             {img && <img src={img} alt=" " />}
             <div className="bookEditDiv">

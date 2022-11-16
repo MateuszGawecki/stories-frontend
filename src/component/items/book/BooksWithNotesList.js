@@ -3,10 +3,6 @@ import BookWithNotes from "./BookWithNotes";
 
 const BooksWithNotesList = ({ userBooks, setUserBooks }) => {
 
-    useEffect(() => {
-        console.log("List rerender");
-    }, []);
-
     return (
         <ul className="libraryList" >
             {userBooks.map(userBook => (

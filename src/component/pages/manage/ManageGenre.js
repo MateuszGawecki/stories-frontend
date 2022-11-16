@@ -1,6 +1,5 @@
 import "./ManageGenre.css";
 
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -58,7 +57,6 @@ const Genre = ({genre, setGenres}) => {
 }
 
 const ManageGenre = () => {
-    const navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [genres, setGenres] = useState();
     const newGenreName = useRef();
@@ -108,7 +106,6 @@ const ManageGenre = () => {
 
     return (  
         <div className="manageGenreMain">
-            <button onClick={() => navigate(-1)}>Go back</button>
             {genres ? <ul className="allGenresList">
                             {
                                 genres.map(genre => (
