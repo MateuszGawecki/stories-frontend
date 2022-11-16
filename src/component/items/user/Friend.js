@@ -3,18 +3,19 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const Friend = ({user, handleDeleteFriend}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
 
     const handleMinusIcon = async () => {
         handleDeleteFriend(user.userId);
     }
 
     const handleDoubleClick = () => {
-        //navigate to user with id 
-        // to see user private library
+        navigate("/users/" + user.userId);
     }
     
     useEffect(() => {
