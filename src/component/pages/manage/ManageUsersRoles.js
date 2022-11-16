@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import UserWithRoles from "../../items/user/UserWithRoles";
 import Pagination from "../../pagination/Pagination";
+import SearchBarPeople from "../../searchBar/SearchBarPeople";
 import "./ManageUsersRoles.css";
 
 const PEOPLE_URL = "/api/users";
@@ -19,6 +20,40 @@ const ManageUserRoles = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalCount, setTotalCount] = useState(null);
     const [totalPageCount, setTotalPageCount] = useState(null);
+
+    const handleSearchChange = useCallback((searchVal) => {
+        let isMounted = true;
+        const controller = new AbortController();
+        const getUsersWithSearch = async () => {
+
+            let searchQuery;
+            if(!searchVal){
+                searchQuery = '';
+            }else{
+                searchQuery = "?searchValue=" + searchVal;
+            }
+
+            try {
+                const response = await axiosPrivate.get(PEOPLE_URL  + searchQuery, {
+                    signal: controller.signal
+                });
+
+                isMounted && setUsers(response.data.users);
+                isMounted && setTotalCount(response.data.totalItems);
+                isMounted && setTotalPageCount(response.data.totalPages);
+                isMounted && setCurrentPage(1);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        getUsersWithSearch();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        };
+    }, []);
 
     useEffect(() => {
         let isMounted = true;
@@ -75,6 +110,7 @@ const ManageUserRoles = () => {
     return ( 
         <div className="manageRolesDiv">
             <button onClick={() => navigate(-1)}>Go back</button>
+            <SearchBarPeople handleSearchChange={handleSearchChange}/>
             <ul className="usersToManage">
             {users ? users.map(user => (
                     <li key={user.userId}>
