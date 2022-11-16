@@ -223,7 +223,7 @@ const ModifyBook = ({bookId}) => {
             <button className="buttonBookDelete" onClick={handleDeleteBook}>Delete book</button>
             <div className="bookEditDiv">
                 {img && <img src={img} alt=" " />}
-                <form onSubmit={handleSubmit}>
+                <form className="formModBook" onSubmit={handleSubmit}>
                     <input 
                         value={newTitle}
                         onChange={(e) => setNewTitle(e.target.value)}
@@ -232,8 +232,8 @@ const ModifyBook = ({bookId}) => {
                         value={newDesc}
                         onChange={(e) => setNewDesc(e.target.value)}
                     />
-                    <Select isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
-                    <Select isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
+                    <Select className="select" isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
+                    <Select className="select" isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
                     <input 
                         type="file"
                         onChange={(e) => handleImageChange(e)}

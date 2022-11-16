@@ -20,16 +20,16 @@ const Navbar = () => {
             </svg>
             <ul>
                 <li>
-                    <Link to="/books">Books</Link>
+                    <Link to="/books" style={{ textDecoration: 'none' }}>Books</Link>
                 </li>
                 <li>
-                    <Link to="/library">My Library</Link>
+                    <Link to="/library" style={{ textDecoration: 'none' }}>My Library</Link>
                 </li>
                 <li>
-                    <Link to="/people">People</Link>
+                    <Link to="/people" style={{ textDecoration: 'none' }}>People</Link>
                 </li>
                 <li>
-                    <Link to="/settings">Settings</Link>
+                    <Link to="/settings" style={{ textDecoration: 'none' }}>Settings</Link>
                 </li>
             </ul>
 

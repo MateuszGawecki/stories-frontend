@@ -45,7 +45,7 @@ const Author = ({author, setAuthors}) => {
     }
 
     return ( 
-        <>
+        <div className="author">
         <input 
             value={name1}
             onChange={(e) => setName1(e.target.value)}
@@ -56,7 +56,7 @@ const Author = ({author, setAuthors}) => {
         />
         <FontAwesomeIcon icon={faPenToSquare} onClick={() => handleEditIcon()} />
         <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteIcon()}/>
-        </>
+        </div>
     );
 }
 
@@ -110,7 +110,7 @@ const ManageAuthor = () => {
     }, []);
 
     return ( 
-        <div className="manageAuthorMain">
+        <div className="manageAuthorsMain">
             {authors ? <ul className="allAuthorsList">
                             {
                                 authors.map(author => (
@@ -125,20 +125,30 @@ const ManageAuthor = () => {
             }
 
             <div className="addAuthorDiv">
-                <form onSubmit={handleSubmit}>
-                    <input 
+                <form className="addAuthorForm" onSubmit={handleSubmit}>
+                    <label htmlFor="name">
+                        Name:
+                        <input 
+                        className="inptNewAuth"
                         type="text" 
-                        id="note" 
+                        id="name" 
                         ref={newName}
                         requied
                     />
-                    <input 
+                    </label>
+                    
+                    <label htmlFor="surname">
+                        Surname:
+                        <input 
+                        className="inptNewAuth"
                         type="text" 
-                        id="note" 
+                        id="surname" 
                         ref={newSurname}
                         requied
-                    />
-                    <button>Add author</button>
+                    /> 
+                    </label>
+                    
+                    <button className="addAuthorBut">Add author</button>
                 </form>
             </div>
         </div>

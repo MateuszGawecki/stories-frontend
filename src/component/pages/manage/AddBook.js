@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Select from "react-select";
 
+import "./AddBook.css";
+
 const CREATE_BOOK_URL = "/api/books";
 const SAVE_IMAGE_PATH = "/api/image";
 const GENRES_URL = "/api/genres/";
@@ -148,7 +150,7 @@ const AddBook = () => {
     }
 
     return (
-        <>
+        <div className="addBookMainDiv">
         { success ? (
             <section>
                 <h1>Success!</h1>
@@ -159,8 +161,7 @@ const AddBook = () => {
         ) : (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Create Book</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="formAddBook" onSubmit={handleSubmit}>
                 <label htmlFor="title">
                     Title:
                 </label>
@@ -181,8 +182,15 @@ const AddBook = () => {
                     requied
                 />
 
-                <Select isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
-                <Select isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
+                <label htmlFor="Genres">
+                    Genres:
+                </label>
+                <Select id="Genres" className="select" isMulti value={newGenres} onChange={handleChangeGenre} options={allGenres}/>
+
+                <label htmlFor="Authors">
+                    Authors:
+                </label>
+                <Select id="Authors" className="select" isMulti value={newAuthors} onChange={handleChangeAuthor} options={allAuthors}/>
 
                 <label htmlFor="image">
                     Image:
@@ -198,7 +206,7 @@ const AddBook = () => {
             </form>
         </section>
         )}
-        </>
+        </div>
     );
 };
 

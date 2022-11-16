@@ -18,7 +18,7 @@
 }
 
 .bookEditDiv>img{
-    width: 15em;
+    width: 17em;
     margin-right: 4em;
 }
 
@@ -29,16 +29,45 @@
     align-items: center;
 }
 
-.bookEditDiv>form{
-    margin-left: 4em;
+/* .bookEditDiv>form{
+    
 
     display: flex;
     flex-direction: column;
 
     justify-content: space-between;
+    
+} */
+
+.formModBook{
+    width: 30em;
+    margin-left: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
 }
 
 .bookEditDiv>form>input{
     text-align: center;
+    margin-bottom: 0.5em;
 }
 
+.bookEditDiv>form>textarea{
+    height: 17em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.select{
+    margin-bottom: 0.5em;
+}
+
+button:hover{
+    background-color: greenyellow;
+}

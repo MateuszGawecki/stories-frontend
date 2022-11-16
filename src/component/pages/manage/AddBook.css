@@ -1,0 +1,32 @@
+.addBookMainDiv{
+    background-color: white;
+    height: 82%;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section{
+    width: 30%;
+}
+
+.formAddBook{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
+}
+
+input, .select, textarea{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 80%;
+}

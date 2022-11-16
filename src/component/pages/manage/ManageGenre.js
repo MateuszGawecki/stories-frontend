@@ -45,14 +45,14 @@ const Genre = ({genre, setGenres}) => {
     }
 
     return ( 
-        <>
+        <div className="genre">
         <input 
             value={genreName1}
             onChange={(e) => setGenreName1(e.target.value)}
         />
         <FontAwesomeIcon icon={faPenToSquare} onClick={() => handleEditIcon()} />
         <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteIcon()}/>
-        </>
+        </div>
     );
 }
 
@@ -120,14 +120,17 @@ const ManageGenre = () => {
             }
 
             <div className="addGenreDiv">
-                <form onSubmit={handleSubmit}>
-                    <input 
-                        type="text" 
-                        id="note" 
-                        ref={newGenreName}
-                        requied
-                    />
-                    <button>Add genre</button>
+                <form className="addGenreForm" onSubmit={handleSubmit}>
+                    <label htmlFor="name">
+                        Name:
+                        <input 
+                            type="text" 
+                            id="note" 
+                            ref={newGenreName}
+                            requied
+                        />
+                    </label>
+                    <button className="addGenreBut">Add genre</button>
                 </form>
             </div>
         </div>

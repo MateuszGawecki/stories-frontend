@@ -1,0 +1,74 @@
+.manageGenreMain{
+    height: 82%;
+    background-color: white;
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+
+.allGenresList{
+    overflow: auto;
+    height: 90%;
+    padding: 0;
+    margin: 0;
+    width: 32em;
+    margin: 0.5em;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    list-style: none;
+}
+
+.genre{
+    width: 20em;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
+    margin: 0.5em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.addGenreDiv{
+    height: 10%;
+    position:  absolute;
+    bottom: 1em;
+}
+
+.addGenreForm{
+    width: 32em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.addGenreForm>label{
+    width: 32em;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+}
+
+.addGenreBut{
+    height: 50%;
+    margin-right: 1em;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
+}
