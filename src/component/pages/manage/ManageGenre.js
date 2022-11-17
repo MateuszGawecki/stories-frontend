@@ -106,6 +106,7 @@ const ManageGenre = () => {
 
     return (  
         <div className="manageGenreMain">
+            <div className="manageGenresMainSubDiv">
             {genres ? <ul className="allGenresList">
                             {
                                 genres.map(genre => (
@@ -132,6 +133,7 @@ const ManageGenre = () => {
                     </label>
                     <button className="addGenreBut">Add genre</button>
                 </form>
+            </div>
             </div>
         </div>
     );

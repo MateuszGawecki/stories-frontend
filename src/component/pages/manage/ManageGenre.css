@@ -1,11 +1,28 @@
 .manageGenreMain{
     height: 82%;
     background-color: white;
-    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.manageGenresMainSubDiv{
+    width: 35em;
+    height: 80%;
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
+    margin: 0.5em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     position: relative;
 }
@@ -48,7 +65,7 @@
 }
 
 .addGenreForm{
-    width: 32em;
+    width: 20em;
 
     display: flex;
     flex-direction: row;
@@ -65,6 +82,7 @@
 }
 
 .addGenreBut{
+    width: 10em;
     height: 50%;
     margin-right: 1em;
     border: solid;

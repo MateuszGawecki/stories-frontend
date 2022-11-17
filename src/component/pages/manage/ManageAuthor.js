@@ -111,6 +111,7 @@ const ManageAuthor = () => {
 
     return ( 
         <div className="manageAuthorsMain">
+            <div className="manageAuthorsMainSubDiv">
             {authors ? <ul className="allAuthorsList">
                             {
                                 authors.map(author => (
@@ -150,6 +151,7 @@ const ManageAuthor = () => {
                     
                     <button className="addAuthorBut">Add author</button>
                 </form>
+            </div>
             </div>
         </div>
      );
