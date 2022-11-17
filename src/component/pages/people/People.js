@@ -3,7 +3,6 @@ import "./People.css";
 import React, { useCallback, useEffect, useState }  from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import UsersList from "../../items/user/UsersList";
-import FriendsList from "../../items/user/FriendsList";
 import Pagination from "../../pagination/Pagination";
 import SearchBarPeople from "../../searchBar/SearchBarPeople";
 import { useNavigate } from "react-router-dom";
@@ -154,7 +153,7 @@ const People = () => {
             <div className="peopleAside">
                 {isAdmin ? <button className="buttonManageRoles" onClick ={(e) => handleButtonManageRoles(e)}>Manage users roles</button> : null}
                 <SearchBarPeople handleSearchChange={handleSearchChange}/>
-                {searchedFriends && <FriendsList users={searchedFriends} name="friendsList"/>}
+                {searchedFriends && <UsersList users={searchedFriends} cName="friendDiv" name="friendsList"/>}
             </div>
             <div className="usersListDiv">
                 { users && <UsersList users={users} name="usersList"/>}

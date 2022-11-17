@@ -17,6 +17,17 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.peopleAside>button{
+    margin: 0.3em;
+    width: 10em;
+    background-color: lightgreen;
+}
+
+.peopleAside>button:hover{
+    background-color: beige;
 }
 
 .usersList{
@@ -31,13 +42,43 @@
 }
 
 .friendsList{
-    width: 80vw;
+    padding: 0;
+    width: 19vw;
     display: flex;
     flex-direction: column;
     grid-gap: 1em;
     overflow: auto;
 
     list-style: none;
+}
+
+.friendDiv{
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+    background: linear-gradient(90deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+
+
+    height: 5em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.friendDiv>img{
+    width: 40%;
+    height: 100%;
+    border-bottom-left-radius: 1em;
+    border-top-left-radius: 1em;
+}
+
+.friendDiv>p{
+    margin: 0;
+    padding: 0;
+    width: 60%;
 }
 
 .search_input{

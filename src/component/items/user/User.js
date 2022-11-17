@@ -44,9 +44,7 @@ const User = ({user, cName}) => {
     return (
         <div className={cName ? cName : "userDiv"} onDoubleClick={handleDoubleClick}>
             {img && <img src={img} alt=" " />}
-            <div className="userDetails">
-                <p>{user.name + " " + user.surname}</p>
-            </div>
+            <p>{user.name + " " + user.surname}</p>
         </div>
     );
 };

@@ -36,6 +36,10 @@
     border-radius: 1em;
 }
 
+.userInUserDetails>p{
+    margin: 0.2em;
+}
+
 .userFriendsDet{
     border-top: solid;
     border-color: black;
@@ -52,6 +56,10 @@
     padding: 0.5em 1em 0 1em;
     margin: 0.5em 0 0.5em 0;
     overflow: auto;
+}
+
+.userFriendsDet>ul{
+    width: 100%;
 }
 
 .userFriendsDet>li{

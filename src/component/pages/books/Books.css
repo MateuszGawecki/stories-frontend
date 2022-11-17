@@ -63,9 +63,10 @@
 }
 
 .booksListDiv{
-    height: 100%;
+    height: 98%;
     overflow: auto;
     width: 85vw;
+    margin-top: 0.4em;
 }
 
 
