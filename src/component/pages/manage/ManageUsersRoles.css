@@ -1,0 +1,85 @@
+.manageRolesDiv{
+    background-color: white;
+    height: 82%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.manageRolesSubDiv>input{
+    width: 20%;
+}
+
+.manageRolesSubDiv{
+    width: 40%;
+    height: 98%;
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+    margin-left: 0.5em;
+}
+
+.usersToManage{
+    height: 90%;
+    list-style: none;
+    overflow: auto;
+}
+
+.userWithRole{
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+
+    height: 9em;
+    width: 90%;
+    margin: 0.2em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.userWithRole>img{
+    height: 9em;
+    width: 30%;
+    border-radius: 1em;
+}
+
+.userWithRole>p{
+    width: 30%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.roleManagingDiv{
+    width: 40%;
+    height: 100%;
+    border-left: solid;
+    border-color: black;
+    border-width: 1px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectRoleDiv{
+    width: 90%;
+    /* max-height: 80%; */
+}
+
+.roleManagingDiv>button{
+    width: 90%;
+    height: 20%;
+}
+

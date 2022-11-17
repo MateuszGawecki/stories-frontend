@@ -113,7 +113,7 @@ const BookWithNotes = ({ userBook, setUserBooks}) => {
                     })}
                 </div>
 
-                <Rating initRating={userBook.userRating} setNewRating={setNewRating}/>
+                <Rating isReactive={true} initRating={userBook.userRating} setNewRating={setNewRating}/>
 
             </div>
             <div className="notesSection">

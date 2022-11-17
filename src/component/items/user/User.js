@@ -1,18 +1,12 @@
 import "./User.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const User = ({user, handleAddFriend}) => {
+const User = ({user, cName}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
-
-    const handlePlusIcon = async () => {
-        handleAddFriend(user);
-    }
 
     const handleDoubleClick = () => {
         navigate("/users/" + user.userId);
@@ -48,11 +42,10 @@ const User = ({user, handleAddFriend}) => {
     }, []);
 
     return (
-        <div className="userDiv" onDoubleClick={handleDoubleClick}>
+        <div className={cName ? cName : "userDiv"} onDoubleClick={handleDoubleClick}>
             {img && <img src={img} alt=" " />}
             <div className="userDetails">
                 <p>{user.name + " " + user.surname}</p>
-                <FontAwesomeIcon icon={faPlus} onClick ={() => handlePlusIcon()} />
             </div>
         </div>
     );

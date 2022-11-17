@@ -42,50 +42,6 @@ const People = () => {
         navigate("/people/roles/manage");
     };
 
-    const handleDeleteFriend = useCallback( async (friendId) => {
-
-        try {
-            const response = await axiosPrivate.delete("/api/users/friends/" + friendId);
-
-            setFriends(prevState => {
-                const newFriends = prevState.filter(friend => friend.userId !== friendId)
-
-                return newFriends;
-            });
-
-            setSearchedFriends(prevState => {
-                const newFriends = prevState.filter(friend => friend.userId !== friendId)
-
-                return newFriends;
-            });
-
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
-
-    const handleAddFriend = useCallback( async (friend) => {
-
-        try {
-            const response = await axiosPrivate.post("/api/users/friends/" + friend.userId);
-
-            setFriends(prevState => {
-                const newFriends = prevState.filter(friend => friend);
-                newFriends.push(friend);
-                return newFriends;
-            });
-
-            setSearchedFriends(prevState => {
-                const newFriends = prevState.filter(friend => friend);
-                newFriends.push(friend);
-                return newFriends;
-            });
-
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
-
     const handleSearchChange = useCallback((searchVal) => {
         let isMounted = true;
         const controller = new AbortController();
@@ -198,10 +154,10 @@ const People = () => {
             <div className="peopleAside">
                 {isAdmin ? <button className="buttonManageRoles" onClick ={(e) => handleButtonManageRoles(e)}>Manage users roles</button> : null}
                 <SearchBarPeople handleSearchChange={handleSearchChange}/>
-                {searchedFriends && <FriendsList users={searchedFriends} name="friendsList" handleDeleteFriend={handleDeleteFriend}/>}
+                {searchedFriends && <FriendsList users={searchedFriends} name="friendsList"/>}
             </div>
             <div className="usersListDiv">
-                { users && <UsersList users={users} name="usersList" handleAddFriend={handleAddFriend}/>}
+                { users && <UsersList users={users} name="usersList"/>}
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPageUsers}

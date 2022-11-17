@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Books from './component/pages/books/Books';
@@ -37,7 +37,7 @@ function App() {
             <Route path="/library" element={<Library />} />
             <Route path="/people" element={<People />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/users/:id" element={<UserDetails/>} />
+            <Route path="/users/:id" element={<UserDetails />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={["moderator"]}/>}>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const Rating = ({initRating, setNewRating}) => {
+const Rating = ({initRating, setNewRating, isReactive}) => {
     
     const [rating, setRating] = useState(initRating);
     const [hover, setHover] = useState(0);
@@ -19,13 +19,10 @@ const Rating = ({initRating, setNewRating}) => {
                             type="button"
                             key={index}
                             className={index <= (hover || rating) ? "on" : "off"}
-                            onClick={() => handleSetRating(index)}
-                            onMouseEnter={() => setHover(index)}
-                            onMouseLeave={() => setHover(rating)}
-                            onDoubleClick={() => {
-                                setRating(0);
-                                setHover(0);
-                                }}
+                            onClick={() => { isReactive && handleSetRating(index)}}
+                            onMouseEnter={() => { isReactive && setHover(index)}}
+                            onMouseLeave={() => { isReactive && setHover(rating)}}
+                            onDoubleClick={() => { isReactive && handleSetRating(0)}}
                         >
                             <span className="star">&#9733;</span>
                         </button>

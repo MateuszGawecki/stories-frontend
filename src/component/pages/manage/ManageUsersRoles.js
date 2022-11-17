@@ -107,6 +107,7 @@ const ManageUserRoles = () => {
 
     return ( 
         <div className="manageRolesDiv">
+            <div className="manageRolesSubDiv">
             <SearchBarPeople handleSearchChange={handleSearchChange}/>
             <ul className="usersToManage">
             {users ? users.map(user => (
@@ -123,7 +124,8 @@ const ManageUserRoles = () => {
                     totalPageCount={totalPageCount}
                     pageSize={PageSize}
                     onPageChange={page => setCurrentPage(page)}
-                />
+            />
+            </div>
         </div>
     );
 }

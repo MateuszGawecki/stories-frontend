@@ -1,18 +1,12 @@
 import "./Friend.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const Friend = ({user, handleDeleteFriend}) => {
+const Friend = ({user}) => {
     const [img, setImg] = useState();
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
-
-    const handleMinusIcon = async () => {
-        handleDeleteFriend(user.userId);
-    }
 
     const handleDoubleClick = () => {
         navigate("/users/" + user.userId);
@@ -52,7 +46,6 @@ const Friend = ({user, handleDeleteFriend}) => {
             {img && <img src={img} alt=" " />}
             <div className="friendDetails">
                 <p>{user.name + " " + user.surname}</p>
-                <FontAwesomeIcon icon={faMinus} onClick ={() => handleMinusIcon()} />
             </div>
         </div>
     );

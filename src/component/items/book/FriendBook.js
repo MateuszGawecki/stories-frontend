@@ -40,22 +40,22 @@ const FriendBook = ({ userBook }) => {
     }, []);
 
     return (
-        <div className="userBook" id={userBook.userBookId}>
+        <div className="userBookDet" id={userBook.userBookId}>
             {img && <img src={img} alt=" " />}
-            <div className="userBookInfo">
+            <div className="userBookInfoDet">
                 <h5>{userBook.bookDTO.title}</h5>
-                <p className="userBookDesc">{userBook.bookDTO.description}</p>
-                <div className="userBookAuthors">
+                <p className="userBookDescDet">{userBook.bookDTO.description}</p>
+                <div className="userBookAuthorsDet">
                     {userBook.bookDTO.authors?.map(author => {
                         return <p>{author.authorName + " " + author.authorSurname}</p>
                     })}
                 </div>
 
-                <Rating initRating={userBook.userRating}/>
+                <Rating isReactive={false} initRating={userBook.userRating}/>
 
             </div>
-            <div className="notesSection">
-                <ul className="notes" >
+            <div className="notesSectionDet">
+                <ul className="notesDet" >
                     {userBook.commentDTOs?.map(note => (
                         <li key={note.commentId}>
                             <FriendNote note ={note}/>

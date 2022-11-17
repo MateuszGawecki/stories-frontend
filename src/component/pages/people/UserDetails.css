@@ -1,0 +1,182 @@
+.userDetailsMainDiv{
+    height: 82%;
+    width: 100%;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.leftMainSide{
+    margin: 0.5em;
+    width: 40%;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+}
+
+.userDetAndAction{
+    width: 100%;
+    height: 30%;
+}
+
+.userInUserDetails{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.userInUserDetails>img{
+    height: 8em;
+    width: 10em;
+    border-radius: 1em;
+}
+
+.userFriendsDet{
+    border-top: solid;
+    border-color: black;
+    border-width: 1px;
+
+    height: 67%;
+    overflow: auto;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    padding: 0.5em 1em 0 1em;
+    margin: 0.5em 0 0.5em 0;
+    overflow: auto;
+}
+
+.userFriendsDet>li{
+    height: 4em;
+}
+
+.libraryListDet{
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    width: 60%;
+    height: 99%;
+    padding: 0;
+
+    list-style: none;
+    overflow: auto;
+}
+
+/* ================================UB============================= */
+.userBookDet{
+    margin: 0.5em;
+    display: flex;
+    flex-direction: row;
+    
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+
+    height: 30vh;
+}
+
+.userBookDet>img{
+    width: 20%;
+    border-radius: 1em 0 0 1em;
+}
+
+.userBookInfoDet{
+    width: 30%;
+    background: linear-gradient(270deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notesSectionDet {
+    background: linear-gradient(90deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+    border-left: solid;
+    border-color: black;
+    border-width: 1px;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+
+    width: 50%;
+}
+
+.notesDet{
+    padding: 0;
+    list-style: none;
+    height: 90%;
+    width: 100%;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.userBookDescDet{
+    margin: 0.1em;
+    height: 40%;
+    overflow: auto;
+}
+
+
+/* ==============note=============== */
+.noteDet{
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+    margin-left: 0.5em;
+    width: 28vw;
+    margin-top: 0.2em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ==========friend================= */
+.friendDivDet{
+    background: linear-gradient(90deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 1em;
+}
+
+.friendDivDet>img{
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 0.5em;
+    margin: 0;
+}
+
+.friendDetailsDet{
+    width: 10em;
+
+    margin: 0;
+    padding: 0;
+}
+
+.friendDetailsDet>p{
+    width: 10em;
+
+    margin: 0;
+    padding: 0;
+}

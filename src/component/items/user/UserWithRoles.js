@@ -87,7 +87,7 @@ const UserWithRoles = ({user, allRoles}) => {
             {img && <img src={img} alt=" " />}
             <p>{user.name + " " + user.surname}</p>
             <div className="roleManagingDiv">
-                <Select isMulti value={newRoles} onChange={handleChangeRoles} options={allRoles}/>
+                <Select className="selectRoleDiv" isMulti value={newRoles} onChange={handleChangeRoles} options={allRoles}/>
                 <button onClick={(e) => handleSubmitNewRoles(e)}>Submit new roles for user</button>
             </div>
         </div>

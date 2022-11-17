@@ -16,9 +16,42 @@ const UsersDetails = () => {
     const [userFriends, setUserFriends] = useState();
     const [userBooks, setUserBooks] = useState();
 
+    const [isFriend, setIsFriend] = useState(false);
+
+    const handleDeleteFriend = async () => {
+        try {
+            const response = await axiosPrivate.delete("/api/users/friends/" + id);
+            
+            setIsFriend(false);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleAddFriend = async () => {
+        try {
+            const response = await axiosPrivate.post("/api/users/friends/" + id);
+            setIsFriend(true);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
+
+        const isFriendOfUser = async () => {
+            try {
+                const response = await axiosPrivate.get(PEOPLE_URL + "/friends/" + id, {
+                    signal: controller.signal
+                });
+    
+                setIsFriend(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
         const getUser = async () => {
             try {
@@ -60,6 +93,7 @@ const UsersDetails = () => {
         };
 
         getUser();
+        isFriendOfUser();
         getUserFriends();
         getUserBooks();
 
@@ -67,24 +101,32 @@ const UsersDetails = () => {
             isMounted = false;
             controller.abort();
         };
-    }, []);
+    }, [id]);
 
     return ( 
         <div className="userDetailsMainDiv">
-            {user ? <User user={user} /> : null}
-            {userFriends ? 
-                    <ul className="userFriends">
+            <div className="leftMainSide">
+                <div className="userDetAndAction">
+                    {user ? <User user={user} cName="userInUserDetails" /> : null}
+                    {isFriend 
+                        ? <button onClick={handleDeleteFriend}>Delete from friends</button>
+                        : <button onClick={handleAddFriend}>Add to friends</button>
+                    }
+                </div>
+                {userFriends ? 
+                    <ul className="userFriendsDet">
                         {userFriends.map(user => (
                             <li key={user.user_id}>
                                 <UserFriend user={user}/ >
                             </li>
                         ))}
                     </ul>
-                : null
-            }
+                    : null
+                }
+            </div>
 
             {userBooks ? 
-                <ul className="libraryList" >
+                <ul className="libraryListDet" >
                     {userBooks.map(userBook => (
                         <li key={userBook.userBookId}>
                             <FriendBook userBook={userBook}/>

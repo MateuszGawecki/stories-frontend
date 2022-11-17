@@ -42,9 +42,9 @@ const Friend = ({user}) => {
     }, []);
 
     return (
-        <div className="friendDiv" onDoubleClick={handleDoubleClick}>
+        <div className="friendDivDet" onDoubleClick={handleDoubleClick}>
             {img && <img src={img} alt=" " />}
-            <div className="friendDetails">
+            <div className="friendDetailsDet">
                 <p>{user.name + " " + user.surname}</p>
             </div>
         </div>
