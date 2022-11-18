@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faPenToSquare, faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Note.css";
 
@@ -12,7 +12,28 @@ const Note = ({note, ubId, setComments}) => {
 
     const handleOnChange = (e) =>{
         setComment1(e.target.value);
-    }
+    };
+
+    const handleLockIcon = async (e) => {
+        try {
+            const commentId = note.commentId;
+            const comment = comment1;
+            const isPublic = !note.isPublic;
+
+            const response = await axiosPrivate.put(BOOK_URL + "/" + ubId + "/comments" , JSON.stringify({commentId, comment, isPublic}),
+            {headers: {"Content-Type": "application/json"}});
+    
+            setComments(prevState => {
+                const newComments = prevState.filter(com => com.commentId !== note.commentId);
+                newComments.push(response.data);
+
+                return newComments;
+            });
+    
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const handleEditIcon = async () => {
         if(comment1 === note.comment)
@@ -20,8 +41,9 @@ const Note = ({note, ubId, setComments}) => {
 
         const commentId = note.commentId;
         const comment = comment1;
+        const isPublic = note.isPublic;
         try {
-            const response = await axiosPrivate.put(BOOK_URL + "/" + ubId + "/comments" , JSON.stringify({commentId, comment}),
+            const response = await axiosPrivate.put(BOOK_URL + "/" + ubId + "/comments" , JSON.stringify({commentId, comment, isPublic}),
             {headers: {"Content-Type": "application/json"}});
     
             setComments(prevState => {
@@ -56,6 +78,7 @@ const Note = ({note, ubId, setComments}) => {
                 onChange={handleOnChange}
             />
             <div className="actionIcons">
+                {note.isPublic ? <FontAwesomeIcon className="editIcon" icon={faLockOpen} onClick ={() => handleLockIcon()}/> : <FontAwesomeIcon className="editIcon" icon={faLock} onClick ={() => handleLockIcon()}/>}
                 <FontAwesomeIcon className="editIcon" icon={faPenToSquare} onClick ={() => handleEditIcon()}/>
                 <FontAwesomeIcon className="delIcon" icon={faTrashCan} onClick ={() => handleDeleteIcon()}/>
             </div>
