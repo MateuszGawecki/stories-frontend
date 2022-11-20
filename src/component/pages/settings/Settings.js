@@ -92,8 +92,9 @@ const Settings = () => {
         formData.append("image", newImg);
 
         try {
+            var imageName = user.imagePath;
             const response = await axiosPrivate.post(
-                SAVE_IMAGE_PATH,
+                SAVE_IMAGE_PATH + "?imageName=" + imageName,
                 formData,
                 {
                     withCredentials: true,
