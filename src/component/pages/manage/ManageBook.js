@@ -33,8 +33,10 @@ const ModifyBook = ({bookId}) => {
         formData.append("image", imageToSend);
 
         try {
+            var imageName = book.imagePath;
+
             const response2 = await axiosPrivate.post(
-                SAVE_IMAGE_PATH,
+                SAVE_IMAGE_PATH + "?imageName=" + imageName,
                 formData,
                 {
                     withCredentials: true,
@@ -78,6 +80,8 @@ const ModifyBook = ({bookId}) => {
                     headers: { 'Content-Type': 'application/json'}
                 }
             );
+
+            setBook(response.data);
             
             setSuccess(true);
         } catch (error) {
