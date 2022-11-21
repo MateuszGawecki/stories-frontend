@@ -81,7 +81,6 @@ const ModifyBook = ({bookId}) => {
                 }
             );
 
-            console.log(response.data);
             setBook(response.data);
             
             setSuccess(true);
