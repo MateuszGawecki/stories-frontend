@@ -4,6 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Settings.css";
+import { useNavigate } from "react-router-dom";
 
 const USERS_URL = "/api/users";
 const SECUR_URL = "/api/security";
@@ -11,6 +12,7 @@ const SAVE_IMAGE_PATH = "/api/image";
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Settings = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [img, setImg] = useState();
     const [newImg, setNewImg] = useState();
@@ -147,8 +149,13 @@ const Settings = () => {
         }
     };
 
+    const handleViewAppLogs = () => {
+        navigate("/logs");
+    };
+
     return (
         <div className="settingsMain">
+            <button className="buttonLogs" onClick={handleViewAppLogs}>View application logs</button>
             {img ? ( <div className="imageDiv">
                         <img src={img} alt=" " />
                         <input

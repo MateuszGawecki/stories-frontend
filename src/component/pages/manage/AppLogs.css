@@ -1,0 +1,60 @@
+.logsMain{
+    height: 82%;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logsMainSubDiv{
+    width: 80em;
+    height: 90%;
+    background: linear-gradient(0deg, rgba(79,79,82,1) 0%, rgba(137,137,140,1) 35%, rgba(206,210,210,1) 100%);
+
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
+    margin: 0.5em;
+
+
+}
+
+.logsList{
+    height: 80%;
+    overflow: auto;
+    list-style: none;
+}
+
+.logInfo{
+    width: 90%;
+    height: 10%;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 1em;
+    margin: 0.5em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logInfo>p{
+    margin: 0;
+    padding: 0;
+    /* overflow: auto; */
+}
+
+.logsSearchBar{
+    margin: 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.search_logs_inpt{
+    width: 50%;
+}

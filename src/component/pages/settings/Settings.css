@@ -50,6 +50,13 @@
     position: relative;
 }
 
+.buttonLogs{
+    position: absolute;
+    left: 45%;
+    margin-top: 0.2em;
+    width: 10%;
+}
+
 .detCont>button{
     position: absolute;
     bottom: 2em;

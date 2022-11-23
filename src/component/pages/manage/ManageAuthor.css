@@ -29,7 +29,7 @@
     height: 90%;
     overflow: auto;
     padding: 0;
-    margin: 0;
+    margin: 0.5em 0;
     width: 32em;
     margin: 0.5em;
 
@@ -61,7 +61,7 @@
 }
 
 .addAuthorDiv{
-    height: 10%;
+    height: 5%;
     position:  absolute;
     bottom: 1em;
 }

@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 
 const PEOPLE_URL = "/api/users";
 
-const PageSize = 60;
+const PageSize = 30;
 
 const People = () => {
     const axiosPrivate = useAxiosPrivate();

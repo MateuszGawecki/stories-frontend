@@ -18,9 +18,10 @@
 }
 
 .userDiv>img{
-    border-radius: 1em 1em 0 0;
-    width: 100%;
-    margin: 0;
+    border-radius: 1em;
+    height: 70%;
+    max-width: 80%;
+    margin: 0.5em 0 0 0;
 }
 
 

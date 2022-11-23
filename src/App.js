@@ -19,7 +19,7 @@ import ManageGenre from './component/pages/manage/ManageGenre';
 import ModifyBook from './component/pages/manage/ManageBook';
 import ManageUsersRoles from './component/pages/manage/ManageUsersRoles';
 import UserDetails from './component/pages/people/UserDetails';
-
+import AppLogs from './component/pages/manage/AppLogs';
 
 function App() {
 
@@ -49,6 +49,7 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={["admin"]}/>}>
             <Route path="/people/roles/manage" element={<ManageUsersRoles />} />
+            <Route path="/logs" element={<AppLogs />} />
           </Route>
           
         </Route>

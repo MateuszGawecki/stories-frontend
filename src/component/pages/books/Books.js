@@ -10,7 +10,7 @@ import Pagination from "../../pagination/Pagination";
 import useAuth from "../../../hooks/useAuth";
 import jwt_decode from "jwt-decode";
 
-const PageSize = 60;
+const PageSize = 30;
 
 const BOOK_URL = "/api/books";
 
