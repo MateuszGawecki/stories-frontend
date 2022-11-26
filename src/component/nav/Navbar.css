@@ -44,3 +44,34 @@
 .navbar>button:hover{
     background-color: red;
 }
+
+@media only screen and (max-width: 768px) {
+    .navbar{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imgNavbar{
+        margin: 0;
+    }
+
+    .navbar>ul{
+        width: 95%;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0.5em;
+    }
+
+    .navbar>ul>li{
+        width: 5em;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar>button{
+        margin-bottom: 0.5em;
+        align-self: flex-end;
+        margin-right: 0.5em;
+    }
+}

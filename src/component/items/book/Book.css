@@ -79,3 +79,9 @@
     width: 50%;
     border-radius: 1em 0 0 1em;
 }
+
+@media only screen and (max-width: 768px) {
+    .book{
+        width: 95%;
+    }
+}

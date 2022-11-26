@@ -132,3 +132,76 @@
     background-color: transparent;
     cursor: default;
 }
+
+@media only screen and (max-width: 768px) {
+    .booksMain{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .booksAside{
+        height: 15%;
+        width: 100%;
+
+        border-bottom: solid;
+        border-color: black;
+        border-width: 1px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .managingButtons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .search>h3{
+        display: none;
+    }
+
+    .search>input{
+        width: 50%;
+    }
+
+    .searchingSelection{
+        margin-top: 0.2em;
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .buttonAddBook, .buttonAddAuthor, .buttonAddGenre{
+        width: 9em;
+    }
+
+    .booksListDiv{
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    
+    .booksList{
+        width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .booksList>li{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagination-container{
+        margin: 0.2em;
+    }
+}

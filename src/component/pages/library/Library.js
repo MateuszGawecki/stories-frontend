@@ -36,6 +36,7 @@ const Library = () => {
                 });
 
                 isMounted && setRecom(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error(error);
             }
