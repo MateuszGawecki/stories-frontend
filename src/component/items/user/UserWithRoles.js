@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Select from "react-select";
 
-const PEOPLE_URL = "/api/users";
+const PEOPLE_URL = "/api/users/";
 
 const UserWithRoles = ({user, allRoles}) => {
     const [oldRoles, setOldRoles] = useState();
@@ -19,7 +19,7 @@ const UserWithRoles = ({user, allRoles}) => {
 
         const grantRoleToUser = async (roleName) => {
             try {
-                const response = await axiosPrivate.post(PEOPLE_URL + "/roles/" + user.userId + "/" + roleName);
+                const response = await axiosPrivate.post(PEOPLE_URL + user.userId +  "/roles/" + roleName);
             } catch (error) {
                 console.error(error);
             }
@@ -27,7 +27,7 @@ const UserWithRoles = ({user, allRoles}) => {
 
         const revokeRoleFromUser = async (roleName) => {
             try {
-                const response = await axiosPrivate.delete(PEOPLE_URL + "/roles/" + user.userId + "/" + roleName);
+                const response = await axiosPrivate.delete(PEOPLE_URL + user.userId  + "/roles/" + roleName);
             } catch (error) {
                 console.error(error);
             }
