@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const USERS_URL = "/api/users";
 const SECUR_URL = "/api/security";
-const SAVE_IMAGE_PATH = "/api/image";
+const SAVE_IMAGE_PATH = "/api/images";
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Settings = () => {
@@ -26,7 +26,7 @@ const Settings = () => {
 
     const getImage = async (imageP) => {
         try {
-            const response = await axiosPrivate.get("/api/image/" + imageP, {
+            const response = await axiosPrivate.get("/api/images/" + imageP, {
                 responseType: "blob"
             });
 

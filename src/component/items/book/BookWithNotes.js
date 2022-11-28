@@ -27,7 +27,7 @@ const BookWithNotes = ({ userBook, setUserBooks}) => {
         
         const getImage = async () => {
             try {
-                const response = await axiosPrivate.get("/api/image/" + userBook.bookDTO.imagePath, {
+                const response = await axiosPrivate.get("/api/images/" + userBook.bookDTO.imagePath, {
                     responseType: "blob",
                     signal: controller.signal
                 });

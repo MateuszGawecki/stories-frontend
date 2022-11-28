@@ -5,7 +5,7 @@ import Select from "react-select";
 import "./AddBook.css";
 
 const CREATE_BOOK_URL = "/api/books";
-const SAVE_IMAGE_PATH = "/api/image";
+const SAVE_IMAGE_PATH = "/api/images";
 const GENRES_URL = "/api/genres/";
 const AUTHORS_URL = "/api/authors/";
 

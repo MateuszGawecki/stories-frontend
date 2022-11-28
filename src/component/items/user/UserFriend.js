@@ -17,7 +17,7 @@ const Friend = ({user}) => {
 
         const getImage = async () => {
             try {
-                const response = await axiosPrivate.get("/api/image/" + user.imagePath, {
+                const response = await axiosPrivate.get("/api/images/" + user.imagePath, {
                     responseType: "blob",
                     signal: controller.signal
                 });

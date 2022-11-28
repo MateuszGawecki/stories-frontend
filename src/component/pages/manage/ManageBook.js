@@ -8,7 +8,7 @@ import Select from "react-select";
 const GENRES_URL = "/api/genres/";
 const AUTHORS_URL = "/api/authors/";
 const CREATE_BOOK_URL = "/api/books/";
-const SAVE_IMAGE_PATH = "/api/image/";
+const SAVE_IMAGE_PATH = "/api/images/";
 
 const ModifyBook = ({bookId}) => {
     const navigate = useNavigate();

@@ -58,7 +58,7 @@ const Book = ({ book, setBooks, isLibrary, setRecom, setUserBooks }) => {
         
         const getImage = async () => {
             try {
-                const response = await axiosPrivate.get("/api/image/" + book.imagePath, {
+                const response = await axiosPrivate.get("/api/images/" + book.imagePath, {
                     responseType: "blob",
                     signal: controller.signal
                 });
