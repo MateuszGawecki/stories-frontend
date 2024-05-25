@@ -33,7 +33,7 @@ const People = () => {
         : undefined;
     const roles = decoded?.roles || [];
 
-    const isAdmin = roles.find(role => role === 'moderator') ? true : false;
+    const isAdmin = roles.find(role => role === 'admin') ? true : false;
     //=======================
 
     const handleButtonManageRoles = (e) => {

@@ -66,7 +66,7 @@ function Login() {
     return (
         <div className="logindiv">
         <svg className="imglogin" xmlns="http://www.w3.org/2000/svg" width="537" height="108" viewBox="0 0 537 108">
-            <text id="Stories" transform="translate(0 85)" fill="#fff" font-size="88" font-family="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
+            <text id="Stories" transform="translate(0 85)" fill="#fff" font-size="70" font-family="LatinWide, Wide Latin"><tspan x="0" y="0">Stories</tspan></text>
         </svg>
 
         <section className="loginsection">
