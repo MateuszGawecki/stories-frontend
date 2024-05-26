@@ -1,6 +1,8 @@
 import useAxiosPrivate from "./useAxiosPrivate";
 import useAuth from "./useAuth";
 
+import axios from '../api/axios';
+
 const LOGOUT_URL = '/api/security/logout';
 
 const useLogout = () => {
@@ -11,7 +13,7 @@ const useLogout = () => {
         setAuth({});
 
         try {
-            const response = await axiosPrivate.post(LOGOUT_URL, {
+            const response = await axios.post(LOGOUT_URL, {
                 withCredentials: true
             });
         } catch (err) {
