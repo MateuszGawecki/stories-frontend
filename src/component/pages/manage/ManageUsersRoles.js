@@ -32,7 +32,7 @@ const ManageUserRoles = () => {
             }
 
             try {
-                const response = await axiosPrivate.get(PEOPLE_URL  + searchQuery, {
+                const response = await axiosPrivate.get(PEOPLE_URL+"/withExtra"  + searchQuery, {
                     signal: controller.signal
                 });
 
@@ -85,7 +85,7 @@ const ManageUserRoles = () => {
 
         const getUsers = async () => {
             try {
-                const response = await axiosPrivate.get(PEOPLE_URL + "?page=" + (currentPage - 1), {
+                const response = await axiosPrivate.get(PEOPLE_URL+"/withExtra" + "?page=" + (currentPage - 1), {
                     signal: controller.signal
                 });
     
