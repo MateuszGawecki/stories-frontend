@@ -13,7 +13,7 @@ const useLogout = () => {
         setAuth({});
 
         try {
-            const response = await axios.post(LOGOUT_URL, {
+            const response = await axios.get(LOGOUT_URL, {
                 withCredentials: true
             });
         } catch (err) {
