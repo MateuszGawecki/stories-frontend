@@ -160,6 +160,7 @@ const Settings = () => {
                         <img src={img} alt=" " />
                         <input
                             type="file"
+                            accept="image/png, image/jpeg"
                             onChange={(e) => {
                                 setNewImg(e.target.files[0]);
                             }}
