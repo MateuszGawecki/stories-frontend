@@ -7,7 +7,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useInput from '../../../hooks/useInput';
 import useToggle from '../../../hooks/useToggle';
 
-const LOGIN_URL = '/api/login';
+const LOGIN_URL = '/api/security/authenticate';
 
 function Login() {
     const { setAuth } = useAuth();
@@ -46,7 +46,9 @@ function Login() {
                 }
             );
 
-            const accessToken = response?.data?.access_token;
+            // const accessToken = response?.data?.access_token; -- przed podbiciem Spring Security
+            const accessToken = response?.data;
+
 
             setAuth({ email, accessToken });
 
